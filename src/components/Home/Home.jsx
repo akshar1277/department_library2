@@ -14,7 +14,7 @@ const Home = () => {
     <>
     <Navbar/>
     <Hero/>
-    <About/>
+    {/* <About/> */}
     <Count/>
 	  <Stories/>
     <Video/>

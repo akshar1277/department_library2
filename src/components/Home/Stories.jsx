@@ -6,7 +6,7 @@ const Stories = () => {
     <div className="story bg_img padding-top padding-bottom" style={{backgroundImage: "url('assets/images/bg-img/02.jpg')"}}>
 		<div className="container">
 			<div className="section__header style-2 text-center wow fadeInUp" data-wow-duration="1.5s">
-				<h2>Ollya Stories From Our Lovers</h2>
+				<h2>Ollya Stories From Our</h2>
 				<p>Listen and learn from our community members and find out tips and tricks to meet your love. Join us and be part of a bigger family.</p>
 			</div>
 			<div className="section__wrapper">

@@ -83,7 +83,7 @@ const Footer = () => {
 								<div className="footer__inner">
 									<div className="footer__content" >
 										<div className="footer__content--title"  style={{textAlign:'left'}}>
-											<h4>About Love</h4>
+											<h4>About</h4>
 										</div>
 
 										<div className="footer__content--desc" style={{textAlign:'left',color:'white'}}>

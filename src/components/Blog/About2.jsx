@@ -10,13 +10,14 @@ const About2 = () => {
 					<div className="banner__list">
 						<div className="row align-items-center row-cols-xl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1">
 							<div className="col-6">
-								<label>I am a</label>
+								<label>Year</label>
 								<div className="banner__inputlist">
 									<select>
-										<option>Select Gender</option>
-										<option value="male" selected>Male</option>
-										<option value="female">Female</option>
-										<option value="others">Others</option>
+										
+										<option value="1" selected>1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
 									</select>
 								</div>
 							</div>
@@ -348,7 +349,7 @@ const About2 = () => {
 								</div>
 							</div>
 							<div className="col">
-								<button type="submit" className="default-btn reverse d-block"><span>Find Your Partner</span></button>
+								<button type="submit" className="default-btn reverse d-block"><span>Find Your project</span></button>
 							</div>
 						</div>
 					</div>
