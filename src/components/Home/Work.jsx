@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Work = () => {
+
+	
   return (
     <>
     <div className="work work--style2 padding-top padding-bottom bg_img" style={ {backgroundImage: "url('assets/images/bg-img/01.jpg')"}}>

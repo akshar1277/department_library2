@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from "axios";
 
 const About2 = () => {
   return (
@@ -8,31 +9,31 @@ const About2 = () => {
 			<div className="section__wrapper wow fadeInUp" data-wow-duration="1.5s">
 				<form action="#">
 					<div className="banner__list">
-						<div className="row align-items-center row-cols-xl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1">
+						<div className="row align-items-center row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-1">
 							<div className="col-6">
-								<label>Year</label>
+								<label>Select Year</label>
 								<div className="banner__inputlist">
 									<select>
 										
-										<option value="1" selected>1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
+										<option value="1" selected>2019-20</option>
+										<option value="2">2020-21</option>
+										{/* <option value="3">3</option>
+										<option value="4">4</option> */}
 									</select>
 								</div>
 							</div>
 							<div className="col-6">
-								<label>Looking for</label>
+								<label>Internal Guide</label>
 								<div className="banner__inputlist">
 									<select>
-										<option>Select Gender</option>
-										<option value="male">Male</option>
-										<option value="female" selected>Female</option>
-										<option value="others">Others</option>
+										<option>Select Guide</option>
+										<option value="tachampaneriya">Prof TAChampaneriya</option>
+										<option value="prachipancholi" selected>Prof PrachiPancholi</option>
+										<option value="hbpandya">Prof HBPandya</option>
 									</select>
 								</div>
 							</div>
-							<div className="col">
+							{/* <div className="col ">
 								<label>Age</label>
 								<div className="row">
 									<div className="col-6">
@@ -347,7 +348,7 @@ const About2 = () => {
 										<option value="Zimbabwe">Zimbabwe</option>
 										</select>
 								</div>
-							</div>
+							</div> */}
 							<div className="col">
 								<button type="submit" className="default-btn reverse d-block"><span>Find Your project</span></button>
 							</div>

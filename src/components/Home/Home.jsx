@@ -12,16 +12,16 @@ import Work from './Work';
 const Home = () => {
   return (
     <>
-    <Navbar/>
-    <Hero/>
-    {/* <About/> */}
-    <Count/>
-	  <Stories/>
-    <Video/>
-    <Work/>
-    <Footer/>
-    
-    
+      <Navbar />
+      <Hero />
+
+      <Count />
+
+      <Video />
+
+      <Footer />
+
+
     </>
   )
 }
