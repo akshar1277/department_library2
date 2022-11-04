@@ -20,15 +20,23 @@ const Video = () => {
                             type="video/mp4" />
                             
 
-                        </video>
+
+                                    </video>
+                                    {/* <div class="video">
+                                        <a href="https://youtu.be/ekQLGA2xHgk">
+                                            <div class="play-btn">
+                                                <ion-icon name="play"></ion-icon>
+                                            </div>
+                                        </a>
+                                    </div> */}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    </>
-  )
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default Video

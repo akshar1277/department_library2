@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 
 
 import Details from './components/Blog/Details';
+import Blogdetails from './components/Blog/Blogdetails';
 
 
 
@@ -21,9 +22,11 @@ function App() {
     <Routes>
       <Route path='/' element={<Home/>} />
       
-      <Route path='/allmember'  element={<Allmember/>} />
+      {/* <Route path='/allmember'  element={<Allmember/>} /> */}
       <Route path='/blog'  element={<Blog/>} />
-      <Route path='/blog-details' element={<Details/>}/>
+      
+      <Route path='/details' element={<Details/>}/>
+      <Route path='/blogdetails' element={<Blogdetails></Blogdetails>}/>
       
 
 

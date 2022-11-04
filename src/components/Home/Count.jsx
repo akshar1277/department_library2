@@ -14,52 +14,44 @@ const Count = () => {
 					<div className="col wow fadeInUp" data-wow-duration="1.5s">
 						<div className="about__item text-center">
 							<div className="about__inner">
-								<div className="about__thumb">
-									<img src="assets/images/about/icon/01.png" alt="dating thumb"/>
-								</div>
-								<div className="about__content">
+								<img src="https://ldcealumni.net/Content/Public/images/kaizen_2018_1.jpg" alt="img not found"/>
+								{/* <div className="about__content">
 									<h3><span className="counter" data-to="990960" data-speed="1500"></span></h3>
-									<p>Members in Total</p>
-								</div>
+									<p style={{color : 'white'}}>Members in Total</p>
+								</div> */}
 							</div>
 						</div>
 					</div>
 					<div className="col wow fadeInUp" data-wow-duration="1.6s">
 						<div className="about__item text-center">
 							<div className="about__inner">
-								<div className="about__thumb">
-									<img src="assets/images/about/icon/02.png" alt="dating thumb"/>
-								</div>
-								<div className="about__content">
+								<img src="https://ldcealumni.net/Content/Public/images/kaizen_2018_1.jpg" alt="img not found"/>
+								{/* <div className="about__content">
 									<h3><span className="counter" data-to="628590" data-speed="1500"></span></h3>
-									<p>Members Online</p>
-								</div>
+									<p style={{color : 'white'}}>Members Online</p>
+								</div> */}
 							</div>
 						</div>
 					</div>
 					<div className="col wow fadeInUp" data-wow-duration="1.7s">
 						<div className="about__item text-center">
 							<div className="about__inner">
-								<div className="about__thumb">
-									<img src="assets/images/about/icon/03.png" alt="dating thumb"/>
-								</div>
-								<div className="about__content">
+								<img src="https://ldcealumni.net/Content/Public/images/kaizen_2018_1.jpg" alt="img not found"/>
+								{/* <div className="about__content">
 									<h3><span className="counter" data-to="314587" data-speed="1500"></span></h3>
-									<p>Women Online</p>
-								</div>
+									<p style={{color : 'white'}}>Women Online</p>
+								</div> */}
 							</div>
 						</div>
 					</div>
 					<div className="col wow fadeInUp" data-wow-duration="1.8s">
 						<div className="about__item text-center">
 							<div className="about__inner">
-								<div className="about__thumb">
-									<img src="assets/images/about/icon/04.png" alt="dating thumb"/>
-								</div>
-								<div className="about__content">
+								<img src="https://ldcealumni.net/Content/Public/images/kaizen_2018_1.jpg" alt="img not found"/>
+								{/* <div className="about__content">
 									<h3><span className="counter" data-to="102369" data-speed="1500"></span></h3>
-									<p>Men Online</p>
-								</div>
+									<p style={{color : 'white'}}>Men Online</p>
+								</div> */}
 							</div>
 						</div>
 					</div>
