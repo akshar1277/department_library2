@@ -1545,7 +1545,6 @@ body h6 {
 .work__content h3,
 .work__tablist .nav-link.active span,
 .about__content h3 .counter,
-.about__inner:hover .about__content h4,
 .footer--support .footer__content--desc ul li a:hover,
 .footer--activity .footer__content--desc ul li:hover .content h6,
 .footer--feature .footer__content--desc ul li:hover .content h6,
@@ -1554,6 +1553,10 @@ body h6 {
   /* color: blue; */
   /* color: white !important; */
   color: #213366;
+}
+
+.about__inner:hover .about__content h4{
+  color: grey;
 }
 
 .membership__inner,
@@ -3705,15 +3708,15 @@ iframe {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  color: blue;
+  color: rgb(55, 0, 255);
 
 
-  background: rgba(0, 9, 57, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: rgba(89, 79, 230, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(64, 61, 235, 0.20);
   /* backdrop-filter: blur(7.5px); */
   /* -webkit-backdrop-filter: blur(7.5px); */
-  border-radius: 10px;
-  border: 1px solid rgba(77, 142, 255, 0.18);
+  /* border-radius: 10px; */
+  /* border: 1px solid rgba(77, 142, 255, 0.18); */
 }
 
 .about__inner:hover {
@@ -3722,7 +3725,7 @@ iframe {
   -ms-transform: translateY(-5px);
   -o-transform: translateY(-5px);
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(68, 45, 113, 0.3);
+  box-shadow: 0 10px 20px rgba(105, 49, 235, 0.3);
 }
 
 .about__thumb img {
@@ -8560,7 +8563,7 @@ a[class*="lightcase-icon-"] {
   scrollbar-color: blue rgb(27, 0, 67);
 }
 
-/* for Chrome */
+/* for Chrome
 *::-webkit-scrollbar {
   width: 15px;
 }
@@ -8573,7 +8576,7 @@ a[class*="lightcase-icon-"] {
   background-color: rgb(110, 13, 237);
   border-radius: 20px;
   border: 3px solid rgb(14, 0, 67);
-}
+} */
 
 
 .navbar-brand {

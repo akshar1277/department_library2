@@ -37,11 +37,11 @@ const Navbar = () => {
 					<div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
 						<div className="navbar-nav mainmenu">
 							<ul>
-								<li id='home' value="home" className={window.location.href.split('/')[3] === '' || window.location.href.split('/')[3] === '' ? "active" : 'inactive'}>
+								<li id='home' value="home">
 									<Link to="/" style={{color : window.location.href.split('/')[3] === '' ? 'white' : 'grey'}}>Home</Link>
 									
 								</li>
-								<li value = 'projects' className={window.location.href.split('/')[3] === 'blog' ? "active" : 'inactive'}>
+								<li value = 'projects'>
 									<Link to="/blog" style={{color : window.location.href.split('/')[3] === 'blog' ? 'white' : 'grey'}} >All Projects</Link>
 								</li>
 								{/* <li>

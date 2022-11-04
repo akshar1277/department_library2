@@ -18,7 +18,7 @@ const Count = () => {
 								{/* <div className="about__content">
 									<h3><span className="counter" data-to="990960" data-speed="1500"></span></h3>
 									<p style={{color : 'white'}}>Members in Total</p>
-								</div> */}
+								</div> */} 
 							</div>
 						</div>
 					</div>
