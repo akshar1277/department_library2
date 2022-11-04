@@ -22,7 +22,7 @@ const Navbar = () => {
 
 
     {/* <!-- ================> header section start here <================== --> */}
-    <header className="header" id="navbar">
+    <header className="header" id="navbar" style={{background : '#212121'}}>
         
 		<div className="header__bottom">
 			<div className="container">

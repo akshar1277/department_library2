@@ -1,13 +1,13 @@
 import React from 'react'
-
+import bg from '../../background1.jpg'
 const Count = () => {
   return (
    <>
-   <div className="about padding-top padding-bottom">
+   <div className="about padding-top padding-bottom" style={{backgroundImage: `url(${bg})`, backgroundSize: "cover"}}>
 		<div className="container">
-			<div className="section__header style-2 text-center wow fadeInUp" data-wow-duration="1.5s">
-				<h2>It All Starts With A Date</h2>
-				<p>Learn from them and try to make it to this board. This will for sure boost you visibility and increase your chances to find you loved one.</p>
+			<div className="section__header style-2 text-center wow fadeInUp" data-wow-duration="1.5s" >
+				<h2 style={{color : "white"}}>It All Starts With A Date</h2>
+				<p style={{color : "grey"}}>Learn from them and try to make it to this board. This will for sure boost you visibility and increase your chances to find you loved one.</p>
 			</div>
 			<div className="section__wrapper">
 				<div className="row g-4 justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 row-cols-1">

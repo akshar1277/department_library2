@@ -1,8 +1,8 @@
 import React from 'react'
 import Footer from '../Footer';
 import Navbar from '../Navbar';
-import About from './About';
-import Banner from './Banner';
+// import About from './About';
+// import Banner from './Banner';
 import Count from './Count';
 import Hero from './Hero';
 import Stories from './Stories';
@@ -16,9 +16,9 @@ const Home = () => {
     <Hero/>
     {/* <About/> */}
     <Count/>
-	  <Stories/>
+	  {/* <Stories/> */}
     <Video/>
-    <Work/>
+    {/* <Work/> */}
     <Footer/>
     
     
