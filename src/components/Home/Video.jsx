@@ -1,9 +1,8 @@
 import React from 'react'
-import bg from '../../background1.jpg'
 const Video = () => {
   return (
     <>
-    <div className="work work--style2 padding-top padding-bottom bg_img" style={ {backgroundImage: `url(${bg})`, backgroundRepeat : false}}>
+    <div className="work work--style2 padding-top padding-bottom bg_img" >
 		<div className="container">
 			<div className="section__wrapper">
 				<div className="row g-4 justify-content-center">

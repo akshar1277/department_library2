@@ -5,22 +5,17 @@ import Navbar from '../Navbar';
 // import Banner from './Banner';
 import Count from './Count';
 import Hero from './Hero';
-import Stories from './Stories';
 import Video from './Video';
-import Work from './Work';
-
+import Dashboard from './Dashboard/Dashboard';
 const Home = () => {
   return (
     <>
-    <Navbar/>
+    <Navbar/> 
     <Hero/>
-    {/* <About/> */}
+    <Dashboard/>
     <Count/>
-	  {/* <Stories/> */}
     <Video/>
-    {/* <Work/> */}
     <Footer/>
-    
     
     </>
   )

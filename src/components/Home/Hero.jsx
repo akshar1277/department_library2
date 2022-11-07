@@ -8,7 +8,7 @@ const Hero = () => {
             <div className="pageheader__content text-center" style={{display : 'block'}}>
                 <h2 style={{color : 'white'}}>Home </h2>
                 <nav aria-label="breadcrumb">
-                    <p className='breadcrumb-item active' style={{color : 'white'}}>
+                    <p className='breadcrumb-item active' style={{color : "black"}}>
                         Lorem ipsum dolor sit amet.
                     </p>
                 </nav>
