@@ -9,7 +9,7 @@ const About2 = () => {
 			<div className="section__wrapper wow fadeInUp" data-wow-duration="1.5s">
 				<form action="#">
 					<div className="banner__list">
-						<div className="row align-items-center row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-1">
+						<div className="row align-items-center row-cols-xl-5 row-cols-lg-5 row-cols-sm-2 row-cols-1">
 							<div className="col-6">
 								<label>Select Year</label>
 								<div className="banner__inputlist">
@@ -33,7 +33,7 @@ const About2 = () => {
 									</select>
 								</div>
 							</div>
-							{/* <div className="col ">
+							<div className="col ">
 								<label>Age</label>
 								<div className="row">
 									<div className="col-6">
@@ -348,7 +348,7 @@ const About2 = () => {
 										<option value="Zimbabwe">Zimbabwe</option>
 										</select>
 								</div>
-							</div> */}
+							</div>
 							<div className="col">
 								<button type="submit" className="default-btn reverse d-block"><span>Find Your project</span></button>
 							</div>

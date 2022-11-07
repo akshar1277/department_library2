@@ -27,7 +27,7 @@ const Navbar = () => {
 		<div className="header__bottom">
 			<div className="container">
 				<nav className="navbar navbar-expand-lg ">
-					<Link className="navbar-brand" to='/'><span >Computer Department</span></Link>
+					<Link className="navbar-brand" to='/' ><span id='logotext'>Computer Department</span></Link>
 					<button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
 						data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
 						aria-label="Toggle navigation">
