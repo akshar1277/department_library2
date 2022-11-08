@@ -38,11 +38,11 @@ const Navbar = () => {
 						<div className="navbar-nav mainmenu">
 							<ul>
 								<li id='home' value="home">
-									<Link to="/" style={{color : window.location.href.split('/')[3] === '' ? 'white' : 'grey'}}>Home</Link>
+									<Link to="/" style={{color : window.location.href.split('/')[3] === '' ? 'blue' : 'grey'}}>Home</Link>
 									
 								</li>
 								<li value = 'projects'>
-									<Link to="/blog" style={{color : window.location.href.split('/')[3] === 'blog' ? 'white' : 'grey'}} >All Projects</Link>
+									<Link to="/blog" style={{color : window.location.href.split('/')[3] === 'blog' ? 'blue' : 'grey'}} >All Projects</Link>
 								</li>
 								{/* <li>
 									<Link to="/allmember">All Projects</Link>

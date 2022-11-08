@@ -40,7 +40,7 @@ export const data = {
     {
       label: 'Projects per year',
       data: [23, 25, 10, 20, 30, 35],
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      backgroundColor: '#5875f5'
     }
   ],
 };

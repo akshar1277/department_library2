@@ -1,7 +1,12 @@
 .number{
     color: white;
+    font-size: 35px;
 }
 .seofct-icon{
     color: white;
     font-size: 30px;
+}
+.main-content-inner{
+    /* background-color: rgba(94, 52, 243, 0.192); */
+    padding: 10px;
 }

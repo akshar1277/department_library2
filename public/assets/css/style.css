@@ -91,7 +91,7 @@ html {
  */
 body {
   margin: 0;
-  background: #f1f7fe;
+  /* background: #f1f7fe; */
   color: #fff;
   font-size: 1rem;
   line-height: 1.5;
@@ -448,8 +448,8 @@ body {
 
   font: normal 125% 1.4;
 
-  background-color: rgb(221, 221, 221);
-
+  background: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+  /* background-image: url('../../../src/bg_img.png'); */
 }
 
 .para {
@@ -3737,7 +3737,6 @@ iframe {
 }
 
 .work {
-  background: rgba(0, 9, 57, 0.4);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   color: white;
  
