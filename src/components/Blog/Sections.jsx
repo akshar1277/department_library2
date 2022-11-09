@@ -53,6 +53,38 @@ const Sections = () => {
 
 	return (
 		<>
+		<div class="member member--style2 padding-top padding-bottom">
+		<div class="container">
+			<div class="section__wrapper">
+				<div class="member__info mb-4">
+					<div class="member__info--left">
+						<div class="member__info--filter">
+							<div class="default-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Filter Your Search <i class="fa-solid fa-sliders"></i></span></div>
+						</div>
+						<div class="member__info--count">
+							<div class="default-btn"><span>All Members</span></div>
+							<p>20365587</p>
+						</div>
+					</div>
+					<div class="member__info--right">
+						<div class="member__info--customselect right w-100">
+							<div class="default-btn"><span>Order By:</span></div>
+							<div class="banner__inputlist">
+								<select>
+									<option value="0">Last Active </option>
+									<option value="1">Oldest</option>
+									<option value="2">Popular</option>
+									<option value="3">Most Active</option>
+								</select>
+							</div>
+						</div>
+					</div>
+                </div>
+				
+				
+			</div>
+		</div>
+	</div>
 			{isError !== "" && <h2>{isError}</h2>}
 			<div className="blog padding-top padding-bottom">
 				<div className="container">

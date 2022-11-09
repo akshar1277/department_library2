@@ -5,7 +5,9 @@ import Sections from './Sections'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
 import About2 from './About2'
-import MyProjectsSection from './MyProjectsSection'
+
+import AllProjectsmap from './AllProjectsmap';
+
 
 const Blog = () => {
   return (
@@ -13,10 +15,11 @@ const Blog = () => {
     <Navbar/>
    
     <Hero2/>
-    {/* <About2/> */}
+    <About2/>
     {/* <Sections/> */}
-    <MyProjectsSection></MyProjectsSection>
+    
     {/* <Details/> */}
+    <AllProjectsmap></AllProjectsmap>
 
     <Footer/>
     
