@@ -10,14 +10,14 @@ const AllProjectsmap = () => {
 	const [myData, setMyData] = useState([]);
 	const [myData2, setMyData2] = useState([]);
 	const [isError, setIsError] = useState("");
-	const[data,setData]=useState([]);
+	const [data, setData] = useState([]);
 	const [currentPage, setcurrentPage] = useState(1)
 	const [itemsPerPage, setitemsPerPage] = useState(10)
 
-  //this is for react paginate
-  const [currentItems, setCurrentItems] = useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+	//this is for react paginate
+	const [currentItems, setCurrentItems] = useState(null);
+	const [pageCount, setPageCount] = useState(0);
+	const [itemOffset, setItemOffset] = useState(0);
 
 	//Let 2 variable to store api for multiple api roting
 
@@ -53,8 +53,8 @@ const AllProjectsmap = () => {
 			console.log(responses)
 			const responseOne = responses[0]
 			const responseTwo = responses[1]
-			const responseData=[...responseOne.data,...responseTwo.data]
-			
+			const responseData = [...responseOne.data, ...responseTwo.data]
+
 			setMyData(responseOne.data)
 			setMyData2(responseTwo.data)
 			setData(responseData)
@@ -64,36 +64,36 @@ const AllProjectsmap = () => {
 
 	useEffect(() => {
 		const endOffset = itemOffset + itemsPerPage;
-	  
-	   setCurrentItems(data.slice(itemOffset, endOffset));
-	   setPageCount(Math.ceil(data.length / itemsPerPage));
-	  },[itemOffset, itemsPerPage,data])
-	  
-  
-	  const handlePageClick = (event) => {
+
+		setCurrentItems(data.slice(itemOffset, endOffset));
+		setPageCount(Math.ceil(data.length / itemsPerPage));
+	}, [itemOffset, itemsPerPage, data])
+
+
+	const handlePageClick = (event) => {
 		const newOffset = (event.selected * itemsPerPage) % data.length;
 		setItemOffset(newOffset);
-	  };
+	};
 
 	return (
 		<>
-		<div class="member member--style2 " style={{"padding-top": "28px"}}>
-		<div class="container">
-			<div class="section__wrapper">
-				<div class="member__info mb-4">
-					<div class="member__info--left">
-						<div class="member__info--filter">
-							<div class="default-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Filter Your Search <i class="fa-solid fa-sliders"></i></span></div>
+			<div class="member member--style2 " style={{ "padding-top": "28px" }}>
+				<div class="container">
+					<div class="section__wrapper">
+						<div class="member__info mb-4">
+							<div class="member__info--left">
+								<div class="member__info--filter">
+									<div class="default-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Filter Your Search <i class="fa-solid fa-sliders"></i></span></div>
+								</div>
+
+							</div>
+
 						</div>
-						
+
+
 					</div>
-					
-                </div>
-				
-				
+				</div>
 			</div>
-		</div>
-	</div>
 			{isError !== "" && <h2>{isError}</h2>}
 			<div className="blog  padding-bottom">
 				<div className="container">
@@ -154,20 +154,20 @@ const AllProjectsmap = () => {
 							})} */}
 
 
-<ReactPaginate
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="<"
-        renderOnZeroPageCount={null}
-        containerClassName={"member__pagination mt-4 member__pagination--right        default-pagination"}
-        nextLinkClassName={"pagination__link"}
-        activeClassName={"pagination__link--active"}
-        
-             
-      />
+							<ReactPaginate
+								breakLabel="..."
+								nextLabel=">"
+								onPageChange={handlePageClick}
+								pageRangeDisplayed={5}
+								pageCount={pageCount}
+								previousLabel="<"
+								renderOnZeroPageCount={null}
+								containerClassName={"member__pagination mt-4 member__pagination--right        default-pagination"}
+								nextLinkClassName={"pagination__link"}
+								activeClassName={"pagination__link--active"}
+
+
+							/>
 						</div>
 					</div>
 				</div>
@@ -176,112 +176,142 @@ const AllProjectsmap = () => {
 
 
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Filter your search</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form action="#">
-					<div class="banner__list">
-						<div class="row align-items-center row-cols-1">
-							<div class="col">
-								<label>I am a</label>
-								<div class="banner__inputlist">
-									<select>
-										<option>Select Gender</option>
-										<option value="male" selected>Male</option>
-										<option value="female">Female</option>
-										<option value="others">Others</option>
-									</select>
-								</div>
-							</div>
-							<div class="col">
-								<label>Looking for</label>
-								<div class="banner__inputlist">
-									<select>
-										<option>Select Gender</option>
-										<option value="male">Male</option>
-										<option value="female" selected>Female</option>
-										<option value="others">Others</option>
-									</select>
-								</div>
-							</div>
-							<div class="col">
-								<label>Age</label>
-								<div class="row g-3">
-									<div class="col-6">
-										<div class="banner__inputlist">
-											<select>
-												<option value="18" selected>18</option>
-												<option value="19">19</option>
-												<option value="20">20</option>
-												<option value="21">21</option>
-												<option value="22">22</option>
-												<option value="23">23</option>
-												<option value="24">24</option>
-												<option value="25">25</option>
-												<option value="26">26</option>
-												<option value="27">27</option>
-												<option value="28">28</option>
-												<option value="29">29</option>
-												<option value="30">30</option>
-												<option value="31">31</option>
-												<option value="32">32</option>
-												<option value="33">33</option>
-												<option value="34">34</option>
-												<option value="35">35</option>
-												<option value="36">36</option>
-												<option value="37">37</option>
-												<option value="38">38</option>
-												<option value="39">39</option>
-												<option value="40">40</option>
-											</select>
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Filter your Projects</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form action="#">
+								<div class="banner__list">
+									<div class="row align-items-center row-cols-2">
+										<div class="col">
+											<label>Batch</label>
+											<div class="banner__inputlist">
+												<select>
+													<option>Select Batch</option>
+													<option value="" selected>2020-21</option>
+													<option value="">2019-20</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="col">
+											<label>Project Type</label>
+											<div class="banner__inputlist">
+												<select>
+													<option>Select Project Type</option>
+													<option value="">type1</option>
+													<option value="" selected>type2</option>
+													<option value="">type3</option>
+												</select>
+											</div>
+										</div>
+										<div class="col">
+											<label>Project Area</label>
+											<div class="banner__inputlist">
+												<select>
+													<option>Select Project Area</option>
+													<option value="">Computer Vision</option>
+													<option value="" selected>Website</option>
+													<option value="">IOT</option>
+													<option value="">Application </option>
+													<option value="">Image Processing using AI
+													</option>
+													<option value="">Application Software
+													</option>
+													<option value="">Desktop Application
+													</option>
+													<option value="">Mobile App
+													</option>
+													<option value="">Portal
+													</option>
+													<option value="">Software</option>
+
+													<option value="">Natural Language Processing
+													</option>
+
+													<option value="">Data Science/ Data Mining
+													</option>
+													<option value="">Holographic Technology
+													</option>
+													<option value="">Network Security
+													</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="col">
+											<label>Project language/Framework</label>
+											<div class="banner__inputlist">
+												<select>
+													<option>Select Language</option>
+													<option value="">language1</option>
+													<option value="" selected>language2</option>
+													<option value="">language3</option>
+												</select>
+											</div>
+										</div>
+										<div class="col">
+											<label>Professor Name</label>
+											<div class="banner__inputlist">
+												<select>
+													<option>Select Professor Name</option>
+													<option value="">Prof YogeshPatel
+
+													</option>
+													<option value="" selected>Prof MKShah
+													</option>
+													<option value="">Prof PinalSalot
+													</option>
+													<option value="">Prof PRDave
+
+													</option>
+													<option value="">Prof NikunjDomadiya
+
+													</option>
+													<option value="">Prof PGPatel
+
+													</option>
+													<option value="">Prof RJayswal
+
+													</option>
+													<option value="">Prof BAOza
+
+													</option>
+													<option value="">Prof HKGevariya
+
+													</option>
+													<option value="">Prof HiteshRajpoot
+
+													</option>
+													<option value="">Prof JayDave
+
+													</option>
+													<option value="">Prof HBPandya
+
+													</option>
+													<option value="">Prof KMPatel
+
+
+													</option>
+												</select>
+											</div>
+										</div>
+
+
+
+										<div class="col">
+											<button type="submit" class="default-btn reverse d-block"><span>Find Your Project</span></button>
 										</div>
 									</div>
-									<div class="col-6">
-										<div class="banner__inputlist">
-											<select>
-												<option value="18">18</option>
-												<option value="19">19</option>
-												<option value="20">20</option>
-												<option value="21">21</option>
-												<option value="22">22</option>
-												<option value="23">23</option>
-												<option value="24">24</option>
-												<option value="25" selected>25</option>
-												<option value="26">26</option>
-												<option value="27">27</option>
-												<option value="28">28</option>
-												<option value="29">29</option>
-												<option value="30">30</option>
-												<option value="31">31</option>
-												<option value="32">32</option>
-												<option value="33">33</option>
-												<option value="34">34</option>
-												<option value="35">35</option>
-												<option value="36">36</option>
-												<option value="37">37</option>
-												<option value="38">38</option>
-												<option value="39">39</option>
-												<option value="40">40</option>
-											</select>
-										</div>
-									</div>
 								</div>
-							</div>
-							
-							<div class="col">
-								<button type="submit" class="default-btn reverse d-block"><span>Find Your Partner</span></button>
-							</div>
+							</form>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
-		</div>
-		</div>
-	</div>
 		</>
 	)
 }

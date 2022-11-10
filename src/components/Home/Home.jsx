@@ -4,6 +4,7 @@ import Navbar from '../Navbar';
 import About from './About';
 import Banner from './Banner';
 import Count from './Count';
+import Dashboard from './Dashboard';
 import Hero from './Hero';
 import Stories from './Stories';
 import Video from './Video';
@@ -14,6 +15,7 @@ const Home = () => {
     <>
       <Navbar />
       <Hero />
+      <Dashboard></Dashboard>
 
       <Count />
 

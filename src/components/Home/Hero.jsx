@@ -3,7 +3,7 @@ import React from 'react'
 const Hero = () => {
   return (
     <>
-     <div className="pageheader bg_img" >
+     <div className="pageheader bg_img" style={{ backgroundImage: "url('assets/images/bg-img/blogimg.jpg')", opacity: 0.75 }}>
         <div className="container">
             <div className="pageheader__content text-center">
                 <h2>Home </h2>
