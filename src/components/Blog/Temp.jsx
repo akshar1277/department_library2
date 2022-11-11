@@ -89,6 +89,18 @@ const Temp = () => {
     }
 
 
+    const fiterProject = (event) => {
+        event.preventDefault();
+
+        const getSearch = event.target.value.toLowerCase();
+        console.log(getSearch);
+        // const searchdata = data.filter((item) =>
+        //     item.Project_name.toLowerCase().includes(getSearch)
+        // )
+        // setData(searchdata)
+    }
+
+
 
 
 
@@ -120,12 +132,6 @@ const Temp = () => {
 
 
 
-    //for advance filter
-    const onfilterValueChange = (event) => {
-        console.log(event.target.value);
-
-
-    }
 
 
 
@@ -151,7 +157,7 @@ const Temp = () => {
 
 
                                     <div className="col-3">
-                                        <button type="submit" className="default-btn reverse d-block" ><span>Find Your project</span></button>
+                                        <button type="submit" className="default-btn reverse d-block"><span>Find Your project</span></button>
                                     </div>
                                 </form>
                             </div>
@@ -266,13 +272,13 @@ const Temp = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="#">
+                            <form action="#" onSubmit={fiterProject}>
                                 <div class="banner__list">
                                     <div class="row align-items-center row-cols-2">
                                         <div class="col">
                                             <label>Batch</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={onfilterValueChange}>
+                                                <select onChange={fiterProject}>
                                                     <option>Select Batch</option>
                                                     <option value="2020-21" selected>2020-21</option>
                                                     <option value="2019-20">2019-20</option>
@@ -283,10 +289,10 @@ const Temp = () => {
                                         <div class="col">
                                             <label>Project Type</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={onfilterValueChange}>
+                                                <select onChange={fiterProject}>
                                                     <option>Select Project Type</option>
-                                                    <option value="UDP">UDP</option>
-                                                    <option value="IDP" selected>IDP</option>
+                                                    <option value="UDP">IDP</option>
+                                                    <option value="IDP" selected>UDP</option>
 
                                                 </select>
                                             </div>
@@ -294,33 +300,34 @@ const Temp = () => {
                                         <div class="col">
                                             <label>Project Area</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={onfilterValueChange}>
+                                                <select onChange={fiterProject}>
+
                                                     <option>Select Project Area</option>
-                                                    <option value="Computer Vision">Computer Vision</option>
-                                                    <option value="Website" selected>Website</option>
-                                                    <option value="IOT">IOT</option>
                                                     <option value="Application">Application</option>
-                                                    <option value="Image Processing using AI">Image Processing using AI
-                                                    </option>
                                                     <option value="Application Software">Application Software
+                                                    </option>
+                                                    <option value="Computer Vision">Computer Vision</option>
+                                                    <option value="Data Science/ Data Mining">Data Science/ Data Mining
                                                     </option>
                                                     <option value="Desktop Application">Desktop Application
                                                     </option>
+                                                    <option value="Holographic Technology">Holographic Technology
+                                                    </option>
+                                                    <option value="Image Processing using AI">Image Processing using AI
+                                                    </option>
+                                                    <option value="IOT">IOT</option>
                                                     <option value="Mobile App">Mobile App
+                                                    </option>
+                                                    <option value="Natural Language Processing">Natural Language Processing
+                                                    </option>
+
+                                                    <option value="Network Security">Network Security
                                                     </option>
                                                     <option value="Portal">Portal
                                                     </option>
                                                     <option value="Software">Software</option>
+                                                    <option value="Website" selected>Website</option>
 
-                                                    <option value="Natural Language Processing">Natural Language Processing
-                                                    </option>
-
-                                                    <option value="Data Science/ Data Mining">Data Science/ Data Mining
-                                                    </option>
-                                                    <option value="Holographic Technology">Holographic Technology
-                                                    </option>
-                                                    <option value="Network Security">Network Security
-                                                    </option>
 
                                                 </select>
                                             </div>
@@ -328,63 +335,57 @@ const Temp = () => {
                                         <div class="col">
                                             <label>Project language/Framework</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={onfilterValueChange}>
+                                                <select onChange={fiterProject}>
                                                     <option>Select Language</option>
-                                                    <option value="Python">Python</option>
-                                                    <option value="JavaScript" selected>JavaScript</option>
-                                                    <option value="HTML">HTML</option>
-                                                    <option value="PHP">PHP</option>
                                                     <option value="Android">Android</option>
-                                                    <option value="Flutter">Flutter</option>
-                                                    <option value="JAVA">JAVA</option>
                                                     <option value="C/C++">C/C++</option>
+                                                    <option value="Flutter">Flutter</option>
+                                                    <option value="HTML">HTML</option>
                                                     <option value="IOS">IOS</option>
+                                                    <option value="JAVA">JAVA</option>
+                                                    <option value="JavaScript" selected>JavaScript</option>
                                                     <option value="Node JS">Node JS</option>
+                                                    <option value="Python">Python</option>
+                                                    <option value="PHP">PHP</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <label>Professor Name</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={onfilterValueChange}>
+                                                <select onChange={fiterProject}>
                                                     <option>Select Professor Name</option>
-                                                    <option value="Prof YogeshPatel">Prof YogeshPatel
 
+                                                    <option value="Prof BAOza">Prof BAOza
                                                     </option>
+
+                                                    <option value="Prof HBPandya">Prof HBPandya
+                                                    </option>
+                                                    <option value="Prof HKGevariya">Prof HKGevariya
+                                                    </option>
+                                                    <option value="Prof HiteshRajpoot">Prof HiteshRajpoot
+                                                    </option>
+
+                                                    <option value="Prof JayDave">Prof JayDave
+                                                    </option>
+                                                    <option value="Prof KMPatel">Prof KMPatel
+                                                    </option>
+
                                                     <option value="Prof MKShah" selected>Prof MKShah
+                                                    </option>
+                                                    <option value="Prof NikunjDomadiya">Prof NikunjDomadiya
+                                                    </option>
+                                                    <option value="Prof PGPatel">Prof PGPatel
                                                     </option>
                                                     <option value="Prof PinalSalot">Prof PinalSalot
                                                     </option>
                                                     <option value="Prof PRDave">Prof PRDave
-
                                                     </option>
-                                                    <option value="Prof NikunjDomadiya">Prof NikunjDomadiya
 
-                                                    </option>
-                                                    <option value="Prof PGPatel">Prof PGPatel
 
-                                                    </option>
                                                     <option value="Prof RJayswal">Prof RJayswal
-
                                                     </option>
-                                                    <option value="Prof BAOza">Prof BAOza
-
-                                                    </option>
-                                                    <option value="Prof HKGevariya">Prof HKGevariya
-
-                                                    </option>
-                                                    <option value="Prof HiteshRajpoot">Prof HiteshRajpoot
-
-                                                    </option>
-                                                    <option value="Prof JayDave">Prof JayDave
-
-                                                    </option>
-                                                    <option value="Prof HBPandya">Prof HBPandya
-
-                                                    </option>
-                                                    <option value="Prof KMPatel">Prof KMPatel
-
-
+                                                    <option value="Prof YogeshPatel">Prof YogeshPatel
                                                     </option>
                                                 </select>
                                             </div>

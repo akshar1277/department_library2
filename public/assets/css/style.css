@@ -8835,3 +8835,11 @@ body {
   align-items: center;
   width: 100%;
 }
+
+.circleimg{
+  margin: 0 100px;
+}
+
+body{
+  margin: 0 50px;
+}
