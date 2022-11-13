@@ -1,5 +1,19 @@
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
+import BarChart from './BarChart';
+import LineChart from './LineChart';
+import PieChart from './PieChart';
+import { UserData } from "./Data";
+import { useState } from 'react';
+import ScatterChart from './ScatterChart';
+import RadialBarchart from './RadialBarchart';
+import RadarChart from './RadarChart';
+import Composed from './Composed';
+import Area from './Area';
+import { AreaChart } from 'recharts';
+
+import ChartHorizontal from './chart-horizontal';
+
 
 
 const pdata = [
@@ -38,6 +52,26 @@ const pdata = [
 
 
 const Dashboard = () => {
+
+
+    const [userData, setUserData] = useState({
+        labels: UserData.map((data) => data.year),
+        datasets: [
+            {
+                label: "Users Gained",
+                data: UserData.map((data) => data.userGain),
+                backgroundColor: [
+                    "rgba(75,192,192,1)",
+                    "#00FFFF",
+                    "#EE4E34",
+                    "#99F443",
+                    "#2a71d0",
+                ],
+                borderColor: "black",
+                borderWidth: 2,
+            },
+        ],
+    });
     return (
         // <div classNameName='p-5 '>
 
@@ -188,28 +222,21 @@ const Dashboard = () => {
 
                     <div className="flex flex-row flex-wrap flex-grow mt-2">
 
-                        <div className="w-full md:w-1/2 p-3">
+                        <div className="w-full  p-3">
 
                             <div className="bg-white border rounded shadow">
                                 <div className="border-b p-3">
-                                    <h5 className="font-bold uppercase text-gray-600">Line Chart</h5>
+                                    <h5 className="font-bold uppercase text-gray-600">Bar Chart</h5>
                                 </div>
                                 <div className="p-3 pb-2" >
 
 
 
-                                    <ResponsiveContainer width="130%" aspect={3}>
-                                        <LineChart data={pdata} width={500} height={300} margin={{ top: 5, right: 300, left: 20, bottom: 5 }}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="name" interval={'preserveStartEnd'} tickFormatter={(value) => value + " Programming"} />
-                                            <YAxis />
-                                            <Tooltip contentStyle={{ backgroundColor: 'yellow' }} />
-                                            <Legend />
-                                            <Line type="monotone" dataKey="student" stroke="red" activeDot={{ r: 8 }} />
-                                            <Line type="monotone" dataKey="projects" stroke="green" activeDot={{ r: 8 }} />
-                                        </LineChart>
-                                    </ResponsiveContainer>
 
+                                    {/* <div style={{ width: 600 }}>
+                                        <BarChart chartData={userData} />
+                                    </div> */}
+                                    <ChartHorizontal></ChartHorizontal>
 
 
 
@@ -223,72 +250,62 @@ const Dashboard = () => {
 
                             <div className="bg-white border rounded shadow">
                                 <div className="border-b p-3">
-                                    <h5 className="font-bold uppercase text-gray-600">Area Chart</h5>
+                                    <h5 className="font-bold uppercase text-gray-600">Line Chart</h5>
                                 </div>
                                 <div className="p-3 mb-5 pb-4 ">
 
+                                    <div style={{ width: 500 }}>
+                                        <LineChart chartData={userData} />
+                                    </div>
 
 
-                                    <ResponsiveContainer width="100%" aspect={3}>
-                                        <AreaChart
-                                            width={300}
-                                            height={300}
-                                            data={pdata}
-                                            margin={{
-                                                top: 5,
-                                                right: 30,
-                                                left: 20,
-                                                bottom: 5,
-                                            }}
-                                        >
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="name" />
-                                            <YAxis />
-                                            <Tooltip />
-                                            <Legend />
-                                            <Area type="monotone" dataKey="student" stroke="#8884d8" fill="#8884d8" />
-                                        </AreaChart>
-                                    </ResponsiveContainer>
+
+
+
                                 </div>
                             </div>
 
                         </div>
 
-                        <div className="w-full  p-3">
+                        <div className="w-full md:w-1/2  p-3">
 
                             <div className="bg-white border rounded shadow">
                                 <div className="border-b p-3">
-                                    <h5 className="font-bold uppercase text-gray-600">Bar Chart</h5>
+                                    <h5 className="font-bold uppercase text-gray-600">Pie Chart</h5>
                                 </div>
                                 <div className="p-5">
+                                    <div style={{ width: 500 }}>
+                                        <PieChart chartData={userData} />
+                                    </div>
 
-                                    <ResponsiveContainer width="100%" aspect={3}>
-                                        <BarChart
-                                            width={500}
-                                            height={300}
-                                            data={pdata}
-                                            margin={{
-                                                top: 5,
-                                                right: 30,
-                                                left: 20,
-                                                bottom: 5,
-                                            }}
-                                        >
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="name" />
-                                            <YAxis />
-                                            <Tooltip />
-                                            <Legend />
-                                            <Bar dataKey="student" fill="#8884d8" />
-                                            <Bar dataKey="projects" fill="#82ca9d" />
-                                        </BarChart>
-                                    </ResponsiveContainer>
+
+
 
 
                                 </div>
                             </div>
 
                         </div>
+                        <div className="w-full md:w-1/2  p-3">
+
+                            <div className="bg-white border rounded shadow">
+                                <div className="border-b p-3">
+                                    <h5 className="font-bold uppercase text-gray-600">Radar Chart</h5>
+                                </div>
+                                <div className="p-5">
+
+                                    <div style={{ width: 500 }}>
+                                        <RadarChart chartData={userData} />
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
 
 
 
