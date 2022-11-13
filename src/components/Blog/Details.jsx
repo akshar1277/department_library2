@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../Footer'
 import Navbar from '../Navbar'
+import {Route, Link, Routes, useParams} from 'react-router-dom';
 
 const Details = () => {
 	// { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide }
+	const buttonStyle={
+		background: "linear-gradient(#009FFD, #2A2A72)",
+		color:"#fff"
+	}
+	const spanStyle={
+		color:'#fff'
+	}
+
+	const {betch,id} = useParams();
+	
+	const [data, setdata] = useState({})
+	
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        let projectdata = async () => {
+          await fetch(`https://department-library.herokuapp.com/Project_${betch}/${id}`)
+            .then((res) => {
+              if (res.ok) {
+                return res.json()
+              }
+            })
+            .then((jsonres) => {
+              setdata(jsonres)
+			 
+              
+              
+            
+            })
+        }
+        projectdata()
+      }, [betch,id])
+	  const ur="https://drive.google.com/file/d/1qAsQuFv2maBVp_-FQm6iBwZrPJnSegs0/view"
+	 
 	return (
 		<>
 			<Navbar />
@@ -16,70 +50,66 @@ const Details = () => {
 									<div class="blog__item">
 										<div class="blog__inner">
 											<div class="blog__thumb mt-5">
-												<img src="assets/images/blog/single/01.jpg" alt="blog" />
+											<embed src={ur}
+               width="800"
+               height="500"/>
 											</div>
 											<div class="blog__content">
-												<h2>title : Project_name</h2>
+												<h2>title : {data.Project_name}</h2>
 												<ul class="blog__date">
-													<li><span><i class="fa-solid fa-calendar-days"></i>Batch :</span></li>
-													<li><span><i class="fa-solid fa-calendar-days"></i>Project ID : </span></li>
-													<li><span><i class="fa-solid fa-calendar-days"></i>Internal Guide : </span></li>
+													<li><span><i class="fa-solid fa-calendar-days"></i>Batch :{data.Batch}</span></li>
+													<li><span><i class="fa-solid fa-calendar-days"></i>Project ID : {data.Project_id}</span></li>
+													<li><span><i class="fa-solid fa-calendar-days"></i>Internal Guide : {data.Internal_guide}</span></li>
 
 												</ul>
+												
 												<ul class="blog__date">
-													<li><span><i class="fa-solid fa-calendar-days"></i>Leader Name : </span></li>
-													<li><span><i class="fa-solid fa-calendar-days"></i>Leader Enrollment :</span></li>
-													<li><span><i class="fa-solid fa-calendar-days"></i>Leader Email : </span></li>
+													<li><span><i class="fa-solid fa-calendar-days"></i>Leader Name : {data.Leader_name}</span></li>
+													<li><span><i class="fa-solid fa-calendar-days"></i>Leader Enrollment : {data.Leader_enroll}</span></li>
+													<li><span><i class="fa-solid fa-calendar-days"></i>Leader Email :{data.Leader_email} </span></li>
 
 												</ul>
-												<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero quam ipsum error voluptas dolor commodi. Sit, libero aliquam enim maxime, laboriosam animi quas ex, modi veritatis officiis voluptas labore quia a est aut natus repellat molestiae porro qui. At aut nemo quibusdam facilis totam provident veniam earum tempore esse error.</p>
-												{/* <blockquote class="single-quote mb-4">
-													<div class="quotes">
-														Dynamicaly recaptiuaze distribute technologies wherease
-														turnkey channels and onotonec provide aces to resource
-														levelng expert vias worldwide deve in rabes uoliticly extend
-														aserser are diverse vortals.
-														<span>...Melissa Hunter</span>
+												<div className='row align-items-center justify-content-center'>
+													<div className='col'>
+													<a href={data.Poster_URL} target="_blank">
+													<button style={buttonStyle}  className="default-btn reverse d-block"><span style={spanStyle} >Download Poster</span></button>
+													</a>
 													</div>
-												</blockquote> */}
+												
+													<div className='col'>
+													<a href={data.Document_URL} target="_blank">
+													<button style={buttonStyle}  className="default-btn reverse d-block"><span style={spanStyle} >Download Report</span></button>
+													</a>
 
-
-												<div class="blog__thumb mb-4"><img src="assets/images/blog/single/02.jpg" alt="blog-img" />
+													</div>
+													<div className='col'>
+													<a href={data.Video_URL} target="_blank">
+													<button style={buttonStyle}  className="default-btn reverse d-block"><span style={spanStyle} >Watch Video</span></button>
+													</a>
+													</div>
 												</div>
-												<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero quam ipsum error voluptas dolor commodi. Sit, libero aliquam enim maxime, laboriosam animi quas ex, modi veritatis officiis voluptas labore quia a est aut natus repellat molestiae porro qui. At aut nemo quibusdam facilis totam provident veniam earum tempore esse error.</p>
+												<p style={{"marginTop":'2rem'}}>{data.Abstract}</p>
+											
+
 
 												
 
-												<div class="blog__thumb mb-4">
+												
+
+												{/* <div class="blog__thumb mb-4">
 													<img src="assets/images/blog/single/03.jpg" alt="blog" />
 													<a href="https://www.youtube.com/embed/U9O8G5AreXE" class="play-btn"
 														data-rel="lightcase">
 														<i class="fa-solid fa-play"></i>
 														<span class="pluse_2"></span>
 													</a>
-												</div>
-												<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero quam ipsum error voluptas dolor commodi. Sit, libero aliquam enim maxime, laboriosam animi quas ex, modi veritatis officiis voluptas labore quia a est aut natus repellat molestiae porro qui. At aut nemo quibusdam facilis totam provident veniam earum tempore esse error.</p>
-
+												</div> */}
+											
 											</div>
 										</div>
 									</div>
 
-									{/* <div class="author">
-										<div class="author__thumb">
-											<img src="assets/images/blog/author/01.jpg" alt="author" />
-										</div>
-										<div class="author__content">
-											<h6 class="mb-2">Rajib Ahmed</h6>
-											<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, ipsa autem reprehenderit dolorem necessitatibus numquam illo in commodi cum. Quidem odit neque laudantium sequi exercitationem quas aspernatur, dolores vero earum.</p>
-											<div class="social-media">
-												<a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
-												<a href="#" class="behance"><i class="fa-brands fa-behance"></i></a>
-												<a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-												<a href="#" class="vimeo"><i class="fa-brands fa-vimeo-v"></i></a>
-												<a href="#" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-											</div>
-										</div>
-									</div> */}
+									
 
 
 
