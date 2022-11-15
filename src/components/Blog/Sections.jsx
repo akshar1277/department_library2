@@ -363,7 +363,8 @@ const Sections = () => {
 
 
                                         <div class="col">
-                                            <button type="submit" class="default-btn reverse d-block"><span>Find Your Project</span></button>
+                                            <lable></lable>
+                                            <button style={buttonStyle} type="submit" class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
                                         </div>
                                     </div>
                                 </div>
