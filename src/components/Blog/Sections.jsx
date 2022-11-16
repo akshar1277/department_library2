@@ -3,16 +3,17 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
+import { FilterSharp } from '@mui/icons-material';
 
 const Sections = () => {
 
-    const buttonStyle={
-		background: "linear-gradient(#009FFD, #2A2A72)",
-		color:"#fff"
-	}
-	const spanStyle={
-		color:'#fff'
-	}
+    const buttonStyle = {
+        background: "linear-gradient(#009FFD, #2A2A72)",
+        color: "#fff"
+    }
+    const spanStyle = {
+        color: '#fff'
+    }
 
     const [myData, setMyData] = useState([]);
     const [myData2, setMyData2] = useState([]);
@@ -33,6 +34,10 @@ const Sections = () => {
     const [filterData, setFilterData] = useState([]);
     const [query, setQuery] = useState("");
 
+    //modal filter
+    const [formdata, setFormdata] = useState({ batch: "", type: "", area: "", language: "", professor: "" });
+    const { batch, type, area, language, professor } = formdata;
+
 
 
     //Let 2 variable to store api for multiple api roting
@@ -41,7 +46,7 @@ const Sections = () => {
     let second = "https://department-library.herokuapp.com/Project_2020-2021/?format=json"
 
 
-   
+
     const res = axios.get(first);
     const res2 = axios.get(second);
 
@@ -84,15 +89,35 @@ const Sections = () => {
     }
 
 
-    const fiterProject = (event) => {
-        event.preventDefault();
+    const handleChangeInput = (event) => {
+        // event.preventDefault();
+        const { name, value } = event.target;
+        // console.log(name,value.toLowerCase());
+        setFormdata({ ...formdata, [name]: value });
 
-        const getSearch = event.target.value.toLowerCase();
-        console.log(getSearch);
-        // const searchdata = data.filter((item) =>
-        //     item.Project_name.toLowerCase().includes(getSearch)
-        // )
-        // setData(searchdata)
+    }
+
+    const handleSubmit = () => {
+        const filters = {
+            batch: formdata.batch,
+            type: formdata.type,
+            area: formdata.area,
+            language: formdata.language,
+            professor: formdata.professor
+        };
+
+        const out = data.filter((item) => {
+            console.log(item.batch, item.type, item.area, item.language, item.professor);
+            console.log(filters.batch, filters.type, filters.area, filters.language, filters.professor);
+          
+
+            return (
+                item.batch === filters.batch && item.type === filters.type && item.area === filters.area && item.language === filters.language && item.professor === filters.professor
+            )
+        })
+
+        setData(out);
+
     }
 
 
@@ -105,7 +130,7 @@ const Sections = () => {
         window.scrollTo(0, 0);
 
         axios.all([res, res2]).then(axios.spread((...responses) => {
-            console.log(responses)
+            // console.log(responses)
             const responseOne = responses[0]
             const responseTwo = responses[1]
             const responseData = [...responseOne.data, ...responseTwo.data]
@@ -193,7 +218,7 @@ const Sections = () => {
                                                 <div className="blog__thumb w-xl-50 w-100">
                                                     <img src="assets/images/blog/03.jpg" alt="blog-thumb" className="w-100" />
                                                 </div>
-                                                <div className="blog__content p-4 ps-xl-5 w-xl-50 w-100" style={{textAlign:"left"}}>
+                                                <div className="blog__content p-4 ps-xl-5 w-xl-50 w-100" style={{ textAlign: "left" }}>
                                                     <Link to={`/details/${Batch}/${id}`}><h3>{Project_name}</h3></Link>
                                                     <div className="blog__metapost">
                                                         <a href="/#">Batch : {Batch}</a>
@@ -203,14 +228,14 @@ const Sections = () => {
                                                     </div>
 
                                                     <p>{Abstract.slice(0, 200)}</p>
-                                                    <Link to={`/details/${Batch }/${id}`} className="default-btn" style={buttonStyle}><span style={spanStyle}>read more</span></Link>
+                                                    <Link to={`/details/${Batch}/${id}`} className="default-btn" style={buttonStyle}><span style={spanStyle}>read more</span></Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 );
                             })}
-                           
+
 
                             <ReactPaginate
                                 breakLabel="..."
@@ -241,13 +266,13 @@ const Sections = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="#" onSubmit={fiterProject}>
+                            <form>
                                 <div class="banner__list">
                                     <div class="row align-items-center row-cols-2">
                                         <div class="col">
                                             <label>Batch</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={fiterProject}>
+                                                <select name="batch" value={batch} onChange={handleChangeInput}>
                                                     <option>Select Batch</option>
                                                     <option value="2020-21" selected>2020-21</option>
                                                     <option value="2019-20">2019-20</option>
@@ -258,7 +283,7 @@ const Sections = () => {
                                         <div class="col">
                                             <label>Project Type</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={fiterProject}>
+                                                <select name='type' value={type} onChange={handleChangeInput}>
                                                     <option>Select Project Type</option>
                                                     <option value="UDP">IDP</option>
                                                     <option value="IDP" selected>UDP</option>
@@ -269,7 +294,7 @@ const Sections = () => {
                                         <div class="col">
                                             <label>Project Area</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={fiterProject}>
+                                                <select name='area' value={area} onChange={handleChangeInput}>
 
                                                     <option>Select Project Area</option>
                                                     <option value="Application">Application</option>
@@ -304,7 +329,7 @@ const Sections = () => {
                                         <div class="col">
                                             <label>Project language/Framework</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={fiterProject}>
+                                                <select name='language' value={language} onChange={handleChangeInput}>
                                                     <option>Select Language</option>
                                                     <option value="Android">Android</option>
                                                     <option value="C/C++">C/C++</option>
@@ -322,7 +347,7 @@ const Sections = () => {
                                         <div class="col">
                                             <label>Professor Name</label>
                                             <div class="banner__inputlist">
-                                                <select onChange={fiterProject}>
+                                                <select name='professor' value={professor} onChange={handleChangeInput}>
                                                     <option>Select Professor Name</option>
 
                                                     <option value="Prof BAOza">Prof BAOza
@@ -350,6 +375,8 @@ const Sections = () => {
                                                     </option>
                                                     <option value="Prof PRDave">Prof PRDave
                                                     </option>
+                                                    <option value="POOJA DUTTA MAM">POOJA DUTTA MAM
+                                                    </option>
 
 
                                                     <option value="Prof RJayswal">Prof RJayswal
@@ -364,7 +391,7 @@ const Sections = () => {
 
                                         <div class="col">
                                             <lable></lable>
-                                            <button style={buttonStyle} type="submit" class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
+                                            <button style={buttonStyle} type="button" onClick={handleSubmit} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
                                         </div>
                                     </div>
                                 </div>
