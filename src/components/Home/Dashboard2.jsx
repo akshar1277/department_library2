@@ -22,9 +22,9 @@ const Dashboard2 = () => {
 
 
             </div>
-            <div className="charts">
-                <Featured></Featured>
-                <Chart title="Let's using chart"></Chart>
+            <div className="charts" style={{width:'100%'}}>
+                {/* <Featured></Featured> */}
+                <Chart title="Project Type"></Chart>
 
             </div>
             <div className="listContainer">
