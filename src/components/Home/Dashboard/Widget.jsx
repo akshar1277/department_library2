@@ -4,7 +4,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-
+import { UserData } from './data.js'
 
 const Widget = ({ type }) => {
 
@@ -12,10 +12,17 @@ const Widget = ({ type }) => {
     const amount = 130
     const diff = 100
 
+    function count_projects(project_type){
+        let cnt = 0;
+        UserData.map((info) => { if(info.Project_type === project_type) cnt += 1; });
+        return cnt;
+    }
+    let UDP_projects = count_projects("UDP"), IDP_projects = count_projects('IDP');
+
     switch (type) {
-        case "students":
+        case "Projects":
             data = {
-                title: "Students",
+                title: "Projects",
                 isMoney: false,
                 link: "see all Students",
                 icon: (<PersonOutlineIcon className='icon' style={
@@ -24,32 +31,32 @@ const Widget = ({ type }) => {
                         backgroundColor: "#ff8a6570",
                     }
                 }></PersonOutlineIcon>),
-                amount: 90
+                amount: IDP_projects + UDP_projects
 
             };
             break;
-        case "projects":
+        case "IDP":
             data = {
-                title: "Projects",
+                title: "IDP",
                 isMoney: false,
-                link: "See all Projects",
+                link: "See all IDP Projects",
                 icon: (<MonetizationOnIcon className='icon' style={{
                     color: "#69f0ae",
                     backgroundColor: "#69f0ae70",
                 }}></MonetizationOnIcon>),
-                amount: 100
+                amount: IDP_projects
             };
             break;
-        case "visitors":
+        case "UDP":
             data = {
-                title: "Visitors",
+                title: "UDP",
                 isMoney: false,
-                link: "see all Visitors",
+                link: "see all UDP Visitors",
                 icon: (<AccountCircleIcon className='icon' style={{
                     color: "#00b0ff",
                     backgroundColor: "#00b0ff70",
                 }}></AccountCircleIcon>),
-                amount: 500
+                amount: UDP_projects
             };
             break;
         default:
