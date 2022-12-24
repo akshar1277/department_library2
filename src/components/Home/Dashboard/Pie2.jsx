@@ -68,9 +68,20 @@ const Pie2 = () => {
         <>
             {/* <div>Pie2</div> */}
 
-            <Chart type='pie' className="pie" width={800} height={500} series={chartdata.map((data) => data.value)}
+            <Chart type='pie' className="pie" series={chartdata.map((data) => data.value)}
                 options={{
                     labels: chartdata.map((data) => data.Project_area),
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 200
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }]
                 }}
             >
             </Chart>

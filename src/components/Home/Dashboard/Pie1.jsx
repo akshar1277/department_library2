@@ -161,9 +161,10 @@ const Pie1 = () => {
             {/* <div style={{ width: 500 }}>
                 <Pie data={chartdata2} options={options} />
             </div> */}
-            <Chart type='pie' className="pie" width={700} height={500} series={chartdata.map((data) => data.value)}
+            <Chart type='pie' className="pie" series={chartdata.map((data) => data.value) }
                 options={{
                     labels: chartdata.map((data) => data.Langauge),
+                   
                 }}
             ></Chart>
 

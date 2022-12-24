@@ -17,7 +17,7 @@ const Dashboard2 = () => {
 
 
     return (
-        <div className='Dashboard_2'>
+        <div className='Dashboard_2 my-5 py-3'>
             <div className='widgets'>
                 <Widget type="Projects"></Widget>
                 <Widget type="UDP"></Widget>
