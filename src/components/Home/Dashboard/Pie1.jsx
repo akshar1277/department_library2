@@ -15,6 +15,7 @@ import React, { useState, useEffect } from 'react'
 import Chart from 'react-apexcharts';
 // import data from './data.json';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 const Pie1 = () => {
 
     const [myData, setMyData] = useState([]);
@@ -129,7 +130,7 @@ const Pie1 = () => {
 
 
     const chartdata = []
-    console.log(typeof chartdata);
+    // console.log(typeof chartdata);
     // eslint-disable-next-line array-callback-return
     data01.map((data01) => { chartdata.push({ 'Langauge': data01.languages, 'value': count_fre(data01.languages) }) })
 
@@ -193,12 +194,19 @@ const Pie1 = () => {
                 <Pie data={chartdata2} options={options} />
             </div> */}
             {isError !== "" && <h2>{isError}</h2>}
+
             <Chart type='pie' className="pie" series={chartdata.map((data) => data.value)}
                 options={{
                     labels: chartdata.map((data) => data.Langauge),
+                    events: {
+                        dataPointSelection: (event, chartContext, config) => {
+                            console.log(chartContext, config, event);
+                        }
+                    }
 
                 }}
             ></Chart>
+
 
 
         </>

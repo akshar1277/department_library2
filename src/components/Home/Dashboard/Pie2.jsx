@@ -93,7 +93,7 @@ const Pie2 = () => {
     }
 
     const chartdata = []
-    console.log(typeof chartdata);
+    // console.log(typeof chartdata);
     // eslint-disable-next-line array-callback-return
     data01.map((data01) => { chartdata.push({ 'Project_area': data01.Project_area, 'value': count_fre(data01.Project_area) }) })
 
@@ -115,7 +115,12 @@ const Pie2 = () => {
                                 position: 'bottom'
                             }
                         }
-                    }]
+                    }],
+                    events: {
+                        dataPointSelection: (event, chartContext, config) => {
+                            console.log(chartContext, config);
+                        }
+                    }
                 }}
             >
             </Chart>

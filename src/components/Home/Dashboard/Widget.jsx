@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import { UserData } from './data.js'
+import axios from "axios";
+// import { UserData } from './data.js'
 
 
 const Widget = ({ type }) => {
+    const [UserData, setUserData] = useState([]);
+    const [myData, setMyData] = useState([]);
+    const [myData2, setMyData2] = useState([]);
+    const [isError, setIsError] = useState("");
+
 
     let data;
     const amount = 130
@@ -19,6 +25,33 @@ const Widget = ({ type }) => {
         return cnt;
     }
     let UDP_projects = count_projects("UDP"), IDP_projects = count_projects('IDP');
+
+
+    let first = "https://department-website.onrender.com/Project_2019-2020/?format=json"
+    let second = "https://department-website.onrender.com/Project_2020-2021/?format=json"
+
+
+
+    const res = axios.get(first);
+    const res2 = axios.get(second);
+
+    useEffect(() => {
+        // getMyPostData();
+        window.scrollTo(0, 0);
+
+        axios.all([res, res2]).then(axios.spread((...responses) => {
+            // console.log(responses)
+            const responseOne = responses[0]
+            const responseTwo = responses[1]
+            const responseData = [...responseOne.data, ...responseTwo.data]
+
+            setMyData(responseOne.data)
+            setMyData2(responseTwo.data)
+            setUserData(responseData)
+
+
+        })).catch((error) => setIsError(error.message));
+    }, []);
 
     switch (type) {
         case "Projects":
