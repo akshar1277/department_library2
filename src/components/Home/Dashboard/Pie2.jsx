@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Chart from 'react-apexcharts';
-import data from './data.json';
+// import data from './data.json';
+import axios from "axios";
 
 
 const Pie2 = () => {
+
+    const [myData, setMyData] = useState([]);
+    const [myData2, setMyData2] = useState([]);
+    const [isError, setIsError] = useState("");
+    const [data, setData] = useState([]);
 
     const data01 = [
         {
@@ -45,6 +51,33 @@ const Pie2 = () => {
 
     ];
 
+    let first = "https://department-website.onrender.com/Project_2019-2020/?format=json"
+    let second = "https://department-website.onrender.com/Project_2020-2021/?format=json"
+
+
+
+    const res = axios.get(first);
+    const res2 = axios.get(second);
+
+    useEffect(() => {
+        // getMyPostData();
+        window.scrollTo(0, 0);
+
+        axios.all([res, res2]).then(axios.spread((...responses) => {
+            // console.log(responses)
+            const responseOne = responses[0]
+            const responseTwo = responses[1]
+            const responseData = [...responseOne.data, ...responseTwo.data]
+
+            setMyData(responseOne.data)
+            setMyData2(responseTwo.data)
+            setData(responseData)
+
+
+        })).catch((error) => setIsError(error.message));
+    }, []);
+
+
     const count_fre = (Area) => {
         let count = 0;
         data.map((datas) => {
@@ -67,6 +100,7 @@ const Pie2 = () => {
     return (
         <>
             {/* <div>Pie2</div> */}
+            {isError !== "" && <h2>{isError}</h2>}
 
             <Chart type='pie' className="pie" series={chartdata.map((data) => data.value)}
                 options={{
