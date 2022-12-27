@@ -37,7 +37,7 @@ const Details = () => {
 		}
 		projectdata()
 	}, [betch, id])
-	const ur = "https://drive.google.com/file/d/1qAsQuFv2maBVp_-FQm6iBwZrPJnSegs0/view"
+	
 
 	return (
 		<>
@@ -51,7 +51,7 @@ const Details = () => {
 									<div class="blog__item">
 										<div class="blog__inner">
 											<div class="blog__thumb mt-5">
-												<embed src={ur}
+												<img src={data.Preview_URL}
 													width="800"
 													height="500" />
 											</div>

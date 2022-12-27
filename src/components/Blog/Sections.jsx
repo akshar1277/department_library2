@@ -210,13 +210,13 @@ const Sections = () => {
                         <div className="row g-4 justify-content-center">
 
                             {currentItems && currentItems.map((post) => {
-                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide } = post;
+                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide,Preview_URL } = post;
                                 return (
                                     <div className="col-12" key={id}>
                                         <div className="blog__item">
                                             <div className="blog__inner d-flex flex-wrap align-items-center">
                                                 <div className="blog__thumb w-xl-50 w-100">
-                                                    <img src="assets/images/blog/03.jpg" alt="blog-thumb" className="w-100" />
+                                                    <img src={Preview_URL} alt="blog-thumb" className="w-100" />
                                                 </div>
                                                 <div className="blog__content p-4 ps-xl-5 w-xl-50 w-100" style={{ textAlign: "left" }}>
                                                     <Link to={`/details/${Batch}/${id}`}><h3>{Project_name}</h3></Link>
