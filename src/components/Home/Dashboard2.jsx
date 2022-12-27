@@ -11,13 +11,8 @@ import BarChart from './Dashboard/Barchart';
 
 const Dashboard2 = () => {
 
-
-
-
-
-
     return (
-        <div className='Dashboard_2'>
+        <div className='Dashboard_2 my-5 py-3'>
             <div className='widgets'>
                 <Widget type="Projects"></Widget>
                 <Widget type="UDP"></Widget>
@@ -32,7 +27,7 @@ const Dashboard2 = () => {
                 <Pie2></Pie2>
 
             </div>
-            <div className="bar" style={{ width: '97%', margin: "auto" }}>
+            <div className="bar" style={{ width: '97%', margin: "5rem auto" }}>
                 <div className="title">Project Type</div>
                 <BarChart />
             </div>
@@ -41,11 +36,11 @@ const Dashboard2 = () => {
 
             </div> */}
 
-            <div className="listContainer">
+            {/* <div className="listContainer">
                 <div className="title">Latest Projects</div>
                 <List></List>
 
-            </div>
+            </div> */}
         </div>
     )
 }

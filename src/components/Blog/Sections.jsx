@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
-import { FilterSharp } from '@mui/icons-material';
+
 
 const Sections = () => {
 
@@ -42,8 +42,8 @@ const Sections = () => {
 
     //Let 2 variable to store api for multiple api roting
 
-    let first = "https://department-library.herokuapp.com/Project_2019-2020/?format=json"
-    let second = "https://department-library.herokuapp.com/Project_2020-2021/?format=json"
+    let first = "https://department-website.onrender.com/Project_2019-2020/?format=json"
+    let second = "https://department-website.onrender.com/Project_2020-2021/?format=json"
 
 
 
@@ -109,7 +109,7 @@ const Sections = () => {
         const out = data.filter((item) => {
             console.log(item.batch, item.type, item.area, item.language, item.professor);
             console.log(filters.batch, filters.type, filters.area, filters.language, filters.professor);
-          
+
 
             return (
                 item.batch === filters.batch && item.type === filters.type && item.area === filters.area && item.language === filters.language && item.professor === filters.professor
