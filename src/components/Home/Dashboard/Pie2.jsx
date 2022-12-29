@@ -105,6 +105,7 @@ const Pie2 = () => {
             <Chart type='pie' className="pie" series={chartdata.map((data) => data.value)}
                 options={{
                     labels: chartdata.map((data) => data.Project_area),
+                   
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -116,6 +117,7 @@ const Pie2 = () => {
                             }
                         }
                     }],
+
                     events: {
                         dataPointSelection: (event, chartContext, config) => {
                             console.log(chartContext, config);

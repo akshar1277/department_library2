@@ -6,6 +6,7 @@ import Chart from './Dashboard/Chart';
 import List from './Dashboard/List';
 import Pie1 from './Dashboard/Pie1';
 import Pie2 from './Dashboard/Pie2';
+
 import BarChart from './Dashboard/Barchart';
 
 

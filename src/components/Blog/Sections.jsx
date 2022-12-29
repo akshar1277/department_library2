@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 
 const Sections = () => {
@@ -31,13 +31,16 @@ const Sections = () => {
 
     //Let one usestate for filterdata
 
-    const [filterData, setFilterData] = useState([]);
+    const [OriginalData, setOriginalData] = useState([]);
     const [query, setQuery] = useState("");
 
     //modal filter
     const [formdata, setFormdata] = useState({ batch: "", type: "", area: "", language: "", professor: "" });
     const { batch, type, area, language, professor } = formdata;
 
+    //search data
+    const [searchform, setSearchform] = useState({ search: "", });
+    const { search } = searchform;
 
 
     //Let 2 variable to store api for multiple api roting
@@ -53,39 +56,40 @@ const Sections = () => {
 
 
 
+    const handlesearchsubmit = (event) => {
+        event.preventDefault();
+        const filters2 = {
+            search: searchform.search.toLowerCase(),
+        };
+
+        // console.log(getSearch);
 
 
+        const searchdata = OriginalData.filter((item) =>
+            item.Project_name.toLowerCase().includes(filters2.search) ||
+            item.Batch.includes(filters2.search) ||
+            item.Abstract.toLowerCase().includes(filters2.search) ||
+            item.Internal_guide.toLowerCase().includes(filters2.search) ||
+            item.Leader_name.toLowerCase().includes(filters2.search) ||
+            item.Project_type.toLowerCase().includes(filters2.search) ||
+            item.Langauge.toLowerCase().includes(filters2.search) ||
+            item.Project_area.toLowerCase().includes(filters2.search)
 
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % data.length;
-        setItemOffset(newOffset);
-    };
+        );
+        console.log(searchdata);
+        setData(searchdata);
+
+
+    }
+
 
 
     //for filter 
     const handlesearch = (event) => {
         // event.preventDefault();
-        const getSearch = event.target.value.toLowerCase();
+        const { name, value } = event.target;
+        setSearchform({ ...searchform, [name]: value });
 
-        // console.log(getSearch);
-
-        if (getSearch.length > 0) {
-            const searchdata = data.filter((item) =>
-                item.Project_name.toLowerCase().includes(getSearch) ||
-                item.Batch.includes(getSearch) ||
-                item.Abstract.toLowerCase().includes(getSearch) ||
-                item.Internal_guide.toLowerCase().includes(getSearch) ||
-                item.Leader_name.toLowerCase().includes(getSearch) ||
-                item.Project_type.toLowerCase().includes(getSearch) ||
-                item.Langauge.toLowerCase().includes(getSearch) ||
-                item.Project_area.toLowerCase().includes(getSearch)
-
-            );
-            setData(searchdata);
-        } else {
-            setData(filterData);
-        }
-        setQuery(getSearch);
     }
 
 
@@ -100,21 +104,22 @@ const Sections = () => {
     const handleSubmit = () => {
         const filters = {
             batch: formdata.batch,
-            type: formdata.type,
-            area: formdata.area,
-            language: formdata.language,
-            professor: formdata.professor
+            type: formdata.type.toLowerCase(),
+            area: formdata.area.toLowerCase(),
+            language: formdata.language.toLowerCase(),
+            professor: formdata.professor.toLowerCase()
         };
+        console.log(filters)
 
-        const out = data.filter((item) => {
-            console.log(item.batch, item.type, item.area, item.language, item.professor);
-            console.log(filters.batch, filters.type, filters.area, filters.language, filters.professor);
+        const out = OriginalData.filter((item) =>
+            item.Batch.includes(filters.batch) &&
+            item.Project_type.toLowerCase().includes(filters.type) &&
+            item.Project_area.toLowerCase().includes(filters.area) &&
+            item.Langauge.toLowerCase().includes(filters.language) &&
+            item.Internal_guide.toLowerCase().includes(filters.professor)
 
-
-            return (
-                item.batch === filters.batch && item.type === filters.type && item.area === filters.area && item.language === filters.language && item.professor === filters.professor
-            )
-        })
+        )
+        console.log(out);
 
         setData(out);
 
@@ -138,10 +143,12 @@ const Sections = () => {
             setMyData(responseOne.data)
             setMyData2(responseTwo.data)
             setData(responseData)
-            setFilterData(responseData)
+            setOriginalData(responseData)
 
         })).catch((error) => setIsError(error.message));
     }, []);
+
+
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
@@ -149,6 +156,12 @@ const Sections = () => {
         setCurrentItems(data.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(data.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data])
+
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % data.length;
+        setItemOffset(newOffset);
+    };
 
 
 
@@ -162,26 +175,26 @@ const Sections = () => {
             <div className="about about--style3 padding-top pt-xl-0">
                 <div className="container">
                     <div className="section__wrapper wow fadeInUp" data-wow-duration="1.5s">
-                        <form>
-                            <div className="banner__list">
-                                <form className="row align-items-center justify-content-center" >
 
-                                    <div className="col-9">
-                                        <div className="banner__list">
+                        <div className="banner__list">
+                            <form className="row align-items-center justify-content-center" >
 
-                                            <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' value={query} onChange={(e) => handlesearch(e)} />
-                                        </div>
+                                <div className="col-9">
+                                    <div className="banner__list">
+
+                                        <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' name='search' value={search} onChange={handlesearch} />
                                     </div>
+                                </div>
 
 
 
 
-                                    <div className="col-3">
-                                        <button style={buttonStyle} type="submit" className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </form>
+                                <div className="col-3">
+                                    <button style={buttonStyle} type="button" onClick={handlesearchsubmit} className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -210,7 +223,7 @@ const Sections = () => {
                         <div className="row g-4 justify-content-center">
 
                             {currentItems && currentItems.map((post) => {
-                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide,Preview_URL } = post;
+                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide, Preview_URL } = post;
                                 return (
                                     <div className="col-12" key={id}>
                                         <div className="blog__item">
