@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Footer from '../Footer'
 import Navbar from '../Navbar'
-import {  useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Details = () => {
 	// { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide }
@@ -53,7 +53,8 @@ const Details = () => {
 											<div class="blog__thumb mt-5">
 												<img src={data.Preview_URL}
 													width="800"
-													height="500" />
+													height="500" alt={data.Project_name} />
+
 											</div>
 											<div class="blog__content">
 												<h2>title : {data.Project_name}</h2>
