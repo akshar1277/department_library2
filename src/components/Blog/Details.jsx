@@ -53,7 +53,7 @@ const Details = () => {
 											<div class="blog__thumb mt-5">
 												<img src={data.Preview_URL}
 													width="800"
-													height="500" alt={data.Project_name} />
+													height="500"  />
 
 											</div>
 											<div class="blog__content">
