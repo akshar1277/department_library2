@@ -37,7 +37,7 @@ const Details = () => {
 		}
 		projectdata()
 	}, [betch, id])
-	const ur = "https://drive.google.com/file/d/1qAsQuFv2maBVp_-FQm6iBwZrPJnSegs0/view"
+	
 
 	return (
 		<>
