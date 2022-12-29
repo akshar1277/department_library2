@@ -38,9 +38,6 @@ const Sections = () => {
     const [formdata, setFormdata] = useState({ batch: "", type: "", area: "", language: "", professor: "" });
     const { batch, type, area, language, professor } = formdata;
 
-    //search data
-    const [searchform, setSearchform] = useState({ search: "", });
-    const { search } = searchform;
 
 
     //Let 2 variable to store api for multiple api roting
@@ -56,11 +53,21 @@ const Sections = () => {
 
 
 
-    const handlesearchsubmit = (event) => {
+    const handlesearchsubmit=(event)=>{
         event.preventDefault();
-        const filters2 = {
-            search: searchform.search.toLowerCase(),
+        const filters2={
+            search:searchform.search.toLowerCase(),
         };
+
+        // console.log(getSearch);
+
+
+
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % data.length;
+        setItemOffset(newOffset);
+    };
 
         // console.log(getSearch);
 
@@ -87,13 +94,32 @@ const Sections = () => {
     //for filter 
     const handlesearch = (event) => {
         // event.preventDefault();
-        const { name, value } = event.target;
-        setSearchform({ ...searchform, [name]: value });
+        const getSearch = event.target.value.toLowerCase();
 
+        // console.log(getSearch);
+
+        if (getSearch.length > 0) {
+            const searchdata = data.filter((item) =>
+                item.Project_name.toLowerCase().includes(getSearch) ||
+                item.Batch.includes(getSearch) ||
+                item.Abstract.toLowerCase().includes(getSearch) ||
+                item.Internal_guide.toLowerCase().includes(getSearch) ||
+                item.Leader_name.toLowerCase().includes(getSearch) ||
+                item.Project_type.toLowerCase().includes(getSearch) ||
+                item.Langauge.toLowerCase().includes(getSearch) ||
+                item.Project_area.toLowerCase().includes(getSearch)
+
+            );
+            setData(searchdata);
+        } else {
+            setData(filterData);
+        }
+        setQuery(getSearch);
     }
 
 
     const handleChangeInput = (event) => {
+       
         // event.preventDefault();
         const { name, value } = event.target;
         // console.log(name,value.toLowerCase());
@@ -101,22 +127,21 @@ const Sections = () => {
 
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         const filters = {
             batch: formdata.batch,
-            type: formdata.type.toLowerCase(),
-            area: formdata.area.toLowerCase(),
-            language: formdata.language.toLowerCase(),
-            professor: formdata.professor.toLowerCase()
+            type: formdata.type,
+            area: formdata.area,
+            language: formdata.language,
+            professor: formdata.professor
         };
         console.log(filters)
 
-        const out = OriginalData.filter((item) =>
-            item.Batch.includes(filters.batch) &&
-            item.Project_type.toLowerCase().includes(filters.type) &&
-            item.Project_area.toLowerCase().includes(filters.area) &&
-            item.Langauge.toLowerCase().includes(filters.language) &&
-            item.Internal_guide.toLowerCase().includes(filters.professor)
+        const out = data.filter((item) => {
+            console.log(item.batch, item.type, item.area, item.language, item.professor);
+            console.log(filters.batch, filters.type, filters.area, filters.language, filters.professor);
+
 
         )
         console.log(out);
@@ -158,12 +183,6 @@ const Sections = () => {
     }, [itemOffset, itemsPerPage, data])
 
 
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % data.length;
-        setItemOffset(newOffset);
-    };
-
-
 
 
 
@@ -175,26 +194,26 @@ const Sections = () => {
             <div className="about about--style3 padding-top pt-xl-0">
                 <div className="container">
                     <div className="section__wrapper wow fadeInUp" data-wow-duration="1.5s">
-
-                        <div className="banner__list">
-                            <form className="row align-items-center justify-content-center" >
+                        <form>
+                            <div className="banner__list">
+                                <form className="row align-items-center justify-content-center" >
 
                                 <div className="col-9">
                                     <div className="banner__list">
 
-                                        <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' name='search' value={search} onChange={handlesearch} />
+                                            <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' value={query} onChange={(e) => handlesearch(e)} />
+                                        </div>
                                     </div>
-                                </div>
 
 
 
 
-                                <div className="col-3">
-                                    <button style={buttonStyle} type="button" onClick={handlesearchsubmit} className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
-                                </div>
-                            </form>
-                        </div>
-
+                                    <div className="col-3">
+                                        <button style={buttonStyle} type="submit" className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -279,16 +298,16 @@ const Sections = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form onSubmit={e=>handleSubmit(e)}>
                                 <div class="banner__list">
                                     <div class="row align-items-center row-cols-2">
                                         <div class="col">
                                             <label>Batch</label>
                                             <div class="banner__inputlist">
                                                 <select name="batch" value={batch} onChange={handleChangeInput}>
-                                                    <option>Select Batch</option>
-                                                    <option value="2020-21" selected>2020-21</option>
-                                                    <option value="2019-20">2019-20</option>
+                                                    <option value=" ">Select Batch</option>
+                                                    <option value="2020-2021" selected>2020-21</option>
+                                                    <option value="2019-2020">2019-20</option>
 
                                                 </select>
                                             </div>
@@ -297,7 +316,7 @@ const Sections = () => {
                                             <label>Project Type</label>
                                             <div class="banner__inputlist">
                                                 <select name='type' value={type} onChange={handleChangeInput}>
-                                                    <option>Select Project Type</option>
+                                                    <option value=" ">Select Project Type</option>
                                                     <option value="UDP">IDP</option>
                                                     <option value="IDP" selected>UDP</option>
 
@@ -309,7 +328,7 @@ const Sections = () => {
                                             <div class="banner__inputlist">
                                                 <select name='area' value={area} onChange={handleChangeInput}>
 
-                                                    <option>Select Project Area</option>
+                                                    <option value=" ">Select Project Area</option>
                                                     <option value="Application">Application</option>
                                                     <option value="Application Software">Application Software
                                                     </option>
@@ -343,7 +362,7 @@ const Sections = () => {
                                             <label>Project language/Framework</label>
                                             <div class="banner__inputlist">
                                                 <select name='language' value={language} onChange={handleChangeInput}>
-                                                    <option>Select Language</option>
+                                                    <option value=" ">Select Language</option>
                                                     <option value="Android">Android</option>
                                                     <option value="C/C++">C/C++</option>
                                                     <option value="Flutter">Flutter</option>
@@ -361,7 +380,7 @@ const Sections = () => {
                                             <label>Professor Name</label>
                                             <div class="banner__inputlist">
                                                 <select name='professor' value={professor} onChange={handleChangeInput}>
-                                                    <option>Select Professor Name</option>
+                                                    <option value=" ">Select Professor Name</option>
 
                                                     <option value="Prof BAOza">Prof BAOza
                                                     </option>
@@ -404,7 +423,7 @@ const Sections = () => {
 
                                         <div class="col">
                                             <lable></lable>
-                                            <button style={buttonStyle} type="button" onClick={handleSubmit} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
+                                            <button style={buttonStyle}  type="submit" onClick={e=>handleSubmit(e)} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
                                         </div>
                                     </div>
                                 </div>
