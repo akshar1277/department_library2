@@ -5,8 +5,15 @@ import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import { ConstructionOutlined } from '@mui/icons-material';
 
+import { useContext } from 'react';
+import ChartContext
+ from '../../context/ChartContext';
+
 
 const Sections = () => {
+
+    let {languages,setfilter} = useContext(ChartContext)
+    
 
     const buttonStyle = {
         background: "linear-gradient(#009FFD, #2A2A72)",
@@ -77,12 +84,34 @@ const Sections = () => {
                 item.Project_area.toLowerCase().includes(filters2.search)
 
             );
-            console.log(searchdata);
+            
             setData(searchdata);
         
       
     }
+    //this is for filter by chart click
+    const searchbychart=(l,rdata)=>{
+        
+        const filters3={
+            search2:l.toLowerCase(),
+        };
+        
+        // console.log(getSearch);
 
+      
+            const searchdata2 = rdata.filter((item) =>
+                item.Project_name.toLowerCase().includes(l.toLowerCase()) ||
+                item.Abstract.toLowerCase().includes(l.toLowerCase()) ||
+                item.Langauge.toLowerCase().includes(l.toLowerCase()) ||
+                item.Project_area.toLowerCase().includes(l.toLowerCase())
+
+            );
+            
+            setData(searchdata2);
+            setfilter('');
+        
+      
+    }
 
 
     //for filter 
@@ -112,7 +141,7 @@ const Sections = () => {
             language: formdata.language.toLowerCase(),
             professor: formdata.professor.toLowerCase()
         };
-        console.log(filters)
+        
 
         const out = OriginalData.filter((item) => 
                 item.Batch.toString().includes(filters.batch) &&
@@ -122,7 +151,7 @@ const Sections = () => {
                 item.Internal_guide.toLowerCase().includes(filters.professor)
 
         )
-        console.log(out);
+        
 
         setData(out);
 
@@ -147,6 +176,11 @@ const Sections = () => {
             setMyData2(responseTwo.data)
             setData(responseData)
             setOriginalData(responseData)
+            
+            if(languages){
+                searchbychart(languages,responseData);
+
+            }
 
         })).catch((error) => setIsError(error.message));
     }, []);

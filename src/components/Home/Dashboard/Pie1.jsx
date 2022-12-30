@@ -16,7 +16,11 @@ import Chart from 'react-apexcharts';
 // import data from './data.json';
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { breadcrumbsClasses } from '@mui/material';
+import ChartContext from '../../../context/ChartContext';
+import { useContext } from 'react';
 const Pie1 = () => {
+    let {setfilter} = useContext(ChartContext)
 
     const [myData, setMyData] = useState([]);
     const [myData2, setMyData2] = useState([]);
@@ -68,10 +72,7 @@ const Pie1 = () => {
             "languages": "Node JS",
 
         },
-        {
-            "languages": "Flutter",
-
-        }
+        
 
     ];
 
@@ -198,12 +199,49 @@ const Pie1 = () => {
             <Chart type='pie' className="pie" series={chartdata.map((data) => data.value)}
                 options={{
                     labels: chartdata.map((data) => data.Langauge),
-                    events: {
-                        dataPointSelection: (event, chartContext, config) => {
-                            console.log(chartContext, config, event);
-                        }
-                    }
+                    chart: {
+                        events: {
+                          dataPointSelection: (event, chartContext, config) => {
+                            switch(config.w.config.labels[config.dataPointIndex]){
+                                case 'Python':
+                                    setfilter('Python');
 
+                                    
+                                    break;
+                                case 'JavaScript':
+                                    setfilter('JavaScript'); 
+                                    break;
+                                case 'HTML':
+                                    setfilter('HTML');
+                                    break;
+                                case 'PHP':
+                                    setfilter('PHP');
+                                    break;
+                                case 'Android':
+                                    setfilter('Android');
+                                    break;
+                                case 'Flutter':
+                                    setfilter('Flutter');
+                                    break;
+                                case 'JAVA':
+                                    setfilter('JAVA');
+                                    break;
+                                case 'C/C++':
+                                    setfilter('C/C++');
+                                    break;
+                                case 'IOS':
+                                    setfilter('IOS');
+                                    break;
+                                case '.NET':
+                                    setfilter('.NET');
+                                    break;
+                                case 'Node JS':
+                                    setfilter('Node JS');
+                                    break;    
+                            }
+                          }
+                        }
+                      }, 
                 }}
             ></Chart>
 

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Chart from 'react-apexcharts';
 // import data from './data.json';
 import axios from "axios";
-
+import ChartContext from '../../../context/ChartContext';
+import { useContext } from 'react';
 
 const Pie2 = () => {
+    let {setfilter} = useContext(ChartContext)
 
     const [myData, setMyData] = useState([]);
     const [myData2, setMyData2] = useState([]);
@@ -116,11 +118,42 @@ const Pie2 = () => {
                             }
                         }
                     }],
-                    events: {
-                        dataPointSelection: (event, chartContext, config) => {
-                            console.log(chartContext, config);
+                    chart: {
+                        events: {
+                          dataPointSelection: (event, chartContext, config) => {
+                            switch(config.w.config.labels[config.dataPointIndex]){
+                                case 'AI/Machine Learning/Data Mining':
+                                    setfilter('AI/Machine Learning/Data Mining');
+                                    break;
+                                case 'IoT':
+                                    setfilter('IoT');
+                                    break;
+                                case 'Website/Online Portal':
+                                    setfilter('Website/Online Portal');
+                                    break;
+                                case 'Natural Language Processing':
+                                    setfilter('Natural Language Processing');
+                                    break;
+                                case 'Mobile Application':
+                                    setfilter('Mobile Application');
+                                    break;
+                                case 'PERSON RE-IDENTIFICATION':
+                                    setfilter('PERSON RE-IDENTIFICATION');
+                                    break;
+                                case 'Image Processing':
+                                    setfilter('Image Processing');
+                                    break;
+                                case 'HealthCare/Medical':
+                                    setfilter('HealthCare/Medical'); 
+                                    break;
+                                case 'Robotics':
+                                    setfilter('Robotics');
+                                    break;
+                                  
+                            }
+                          }
                         }
-                    }
+                      },
                 }}
             >
             </Chart>
