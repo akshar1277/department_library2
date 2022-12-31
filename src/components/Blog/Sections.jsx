@@ -38,6 +38,9 @@ const Sections = () => {
     const [formdata, setFormdata] = useState({ batch: "", type: "", area: "", language: "", professor: "" });
     const { batch, type, area, language, professor } = formdata;
 
+    //search data
+    const [searchform, setSearchform] = useState({ search: "", });
+    const { search } = searchform;
 
 
     //Let 2 variable to store api for multiple api roting
@@ -53,28 +56,18 @@ const Sections = () => {
 
 
 
-    const handlesearchsubmit=(event)=>{
+    const handlesearchsubmit = (event) => {
         event.preventDefault();
-        const filters2={
-            search:searchform.search.toLowerCase(),
+        const filters2 = {
+            search: searchform.search.toLowerCase(),
         };
-
-        // console.log(getSearch);
-
-
-
-
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % data.length;
-        setItemOffset(newOffset);
-    };
 
         // console.log(getSearch);
 
 
         const searchdata = OriginalData.filter((item) =>
             item.Project_name.toLowerCase().includes(filters2.search) ||
-            item.Batch.includes(filters2.search) ||
+            item.Batch.toString().includes(filters2.search.toString()) ||
             item.Abstract.toLowerCase().includes(filters2.search) ||
             item.Internal_guide.toLowerCase().includes(filters2.search) ||
             item.Leader_name.toLowerCase().includes(filters2.search) ||
@@ -94,32 +87,14 @@ const Sections = () => {
     //for filter 
     const handlesearch = (event) => {
         // event.preventDefault();
-        const getSearch = event.target.value.toLowerCase();
+        const { name, value } = event.target;
+        setSearchform({ ...searchform, [name]: value });
 
-        // console.log(getSearch);
-
-        if (getSearch.length > 0) {
-            const searchdata = data.filter((item) =>
-                item.Project_name.toLowerCase().includes(getSearch) ||
-                item.Batch.includes(getSearch) ||
-                item.Abstract.toLowerCase().includes(getSearch) ||
-                item.Internal_guide.toLowerCase().includes(getSearch) ||
-                item.Leader_name.toLowerCase().includes(getSearch) ||
-                item.Project_type.toLowerCase().includes(getSearch) ||
-                item.Langauge.toLowerCase().includes(getSearch) ||
-                item.Project_area.toLowerCase().includes(getSearch)
-
-            );
-            setData(searchdata);
-        } else {
-            setData(filterData);
-        }
-        setQuery(getSearch);
     }
 
 
     const handleChangeInput = (event) => {
-       
+
         // event.preventDefault();
         const { name, value } = event.target;
         // console.log(name,value.toLowerCase());
@@ -130,18 +105,20 @@ const Sections = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const filters = {
-            batch: formdata.batch,
-            type: formdata.type,
-            area: formdata.area,
-            language: formdata.language,
-            professor: formdata.professor
+            batch: formdata.batch.toString(),
+            type: formdata.type.toLowerCase(),
+            area: formdata.area.toLowerCase(),
+            language: formdata.language.toLowerCase(),
+            professor: formdata.professor.toLowerCase()
         };
         console.log(filters)
 
-        const out = data.filter((item) => {
-            console.log(item.batch, item.type, item.area, item.language, item.professor);
-            console.log(filters.batch, filters.type, filters.area, filters.language, filters.professor);
-
+        const out = OriginalData.filter((item) =>
+            item.Batch.toString().includes(filters.batch) &&
+            item.Project_type.toLowerCase().includes(filters.type) &&
+            item.Project_area.toLowerCase().includes(filters.area) &&
+            item.Langauge.toLowerCase().includes(filters.language) &&
+            item.Internal_guide.toLowerCase().includes(filters.professor)
 
         )
         console.log(out);
@@ -183,6 +160,12 @@ const Sections = () => {
     }, [itemOffset, itemsPerPage, data])
 
 
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % data.length;
+        setItemOffset(newOffset);
+    };
+
+
 
 
 
@@ -194,26 +177,26 @@ const Sections = () => {
             <div className="about about--style3 padding-top pt-xl-0">
                 <div className="container">
                     <div className="section__wrapper wow fadeInUp" data-wow-duration="1.5s">
-                        <form>
-                            <div className="banner__list">
-                                <form className="row align-items-center justify-content-center" >
+
+                        <div className="banner__list">
+                            <form onSubmit={e => handlesearchsubmit(e)} className="row align-items-center justify-content-center" >
 
                                 <div className="col-9">
                                     <div className="banner__list">
 
-                                            <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' value={query} onChange={(e) => handlesearch(e)} />
-                                        </div>
+                                        <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' name='search' value={search} onChange={handlesearch} />
                                     </div>
+                                </div>
 
 
 
 
-                                    <div className="col-3">
-                                        <button style={buttonStyle} type="submit" className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </form>
+                                <div className="col-3">
+                                    <button style={buttonStyle} type="button" onClick={handlesearchsubmit} className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -298,7 +281,7 @@ const Sections = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form onSubmit={e=>handleSubmit(e)}>
+                            <form onSubmit={e => handleSubmit(e)}>
                                 <div class="banner__list">
                                     <div class="row align-items-center row-cols-2">
                                         <div class="col">
@@ -423,7 +406,7 @@ const Sections = () => {
 
                                         <div class="col">
                                             <lable></lable>
-                                            <button style={buttonStyle}  type="submit" onClick={e=>handleSubmit(e)} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
+                                            <button style={buttonStyle} type="submit" onClick={e => handleSubmit(e)} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
                                         </div>
                                     </div>
                                 </div>
