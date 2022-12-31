@@ -10,6 +10,7 @@ import Footer from '../Footer'
 
 
 const Blog = () => {
+ 
   return (
     <div className=''>
     <Navbar/>

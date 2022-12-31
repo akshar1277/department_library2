@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Chart from 'react-apexcharts';
 // import data from './data.json';
 import axios from "axios";
-
+import ChartContext from '../../../context/ChartContext';
+import { useContext } from 'react';
 
 const Pie2 = () => {
+    let {setfilter} = useContext(ChartContext)
 
     const [myData, setMyData] = useState([]);
     const [myData2, setMyData2] = useState([]);
@@ -117,12 +119,11 @@ const Pie2 = () => {
                             }
                         }
                     }],
-
                     events: {
                         dataPointSelection: (event, chartContext, config) => {
                             console.log(chartContext, config);
                         }
-                    }
+                      },
                 }}
             >
             </Chart>
