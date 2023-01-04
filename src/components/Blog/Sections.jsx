@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
@@ -47,8 +46,8 @@ const Sections = () => {
     const { batch, type, area, language, professor } = formdata;
 
     //search data
-    const [searchform,setSearchform]=useState({search:"",});
-    const {search}=searchform;
+    const [searchform, setSearchform] = useState({ search: "", });
+    const { search } = searchform;
 
 
     //Let 2 variable to store api for multiple api roting
@@ -64,27 +63,27 @@ const Sections = () => {
 
 
 
-    const handlesearchsubmit=(event)=>{
+    const handlesearchsubmit = (event) => {
         event.preventDefault();
-        const filters2={
-            search:searchform.search.toLowerCase(),
+        const filters2 = {
+            search: searchform.search.toLowerCase(),
         };
 
         // console.log(getSearch);
 
-      
-            const searchdata = OriginalData.filter((item) =>
-                item.Project_name.toLowerCase().includes(filters2.search) ||
-                item.Batch.toString().includes(filters2.search.toString()) ||
-                item.Abstract.toLowerCase().includes(filters2.search) ||
-                item.Internal_guide.toLowerCase().includes(filters2.search) ||
-                item.Leader_name.toLowerCase().includes(filters2.search) ||
-                item.Project_type.toLowerCase().includes(filters2.search) ||
-                item.Langauge.toLowerCase().includes(filters2.search) ||
-                item.Project_area.toLowerCase().includes(filters2.search)
+
+        const searchdata = OriginalData.filter((item) =>
+            item.Project_name.toLowerCase().includes(filters2.search) ||
+            item.Batch.toString().includes(filters2.search.toString()) ||
+            item.Abstract.toLowerCase().includes(filters2.search) ||
+            item.Internal_guide.toLowerCase().includes(filters2.search) ||
+            item.Leader_name.toLowerCase().includes(filters2.search) ||
+            item.Project_type.toLowerCase().includes(filters2.search) ||
+            item.Langauge.toLowerCase().includes(filters2.search) ||
+            item.Project_area.toLowerCase().includes(filters2.search)
 
             );
-            
+            console.log(searchdata);
             setData(searchdata);
         
       
@@ -117,14 +116,14 @@ const Sections = () => {
     //for filter 
     const handlesearch = (event) => {
         // event.preventDefault();
-        const {name,value}=event.target;
-        setSearchform({...searchform,[name]:value});
-       
+        const { name, value } = event.target;
+        setSearchform({ ...searchform, [name]: value });
+
     }
 
 
     const handleChangeInput = (event) => {
-       
+
         // event.preventDefault();
         const { name, value } = event.target;
         // console.log(name,value.toLowerCase());
@@ -135,7 +134,7 @@ const Sections = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const filters = {
-            batch: formdata.batch.toString(),   
+            batch: formdata.batch.toString(),
             type: formdata.type.toLowerCase(),
             area: formdata.area.toLowerCase(),
             language: formdata.language.toLowerCase(),
@@ -143,12 +142,12 @@ const Sections = () => {
         };
         
 
-        const out = OriginalData.filter((item) => 
-                item.Batch.toString().includes(filters.batch) &&
-                item.Project_type.toLowerCase().includes(filters.type) &&
-                item.Project_area.toLowerCase().includes(filters.area) &&
-                item.Langauge.toLowerCase().includes(filters.language) &&
-                item.Internal_guide.toLowerCase().includes(filters.professor)
+        const out = OriginalData.filter((item) =>
+            item.Batch.toString().includes(filters.batch) &&
+            item.Project_type.toLowerCase().includes(filters.type) &&
+            item.Project_area.toLowerCase().includes(filters.area) &&
+            item.Langauge.toLowerCase().includes(filters.language) &&
+            item.Internal_guide.toLowerCase().includes(filters.professor)
 
         )
         
@@ -194,7 +193,7 @@ const Sections = () => {
         setPageCount(Math.ceil(data.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data])
 
-    
+
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % data.length;
         setItemOffset(newOffset);
@@ -212,26 +211,26 @@ const Sections = () => {
             <div className="about about--style3 padding-top pt-xl-0">
                 <div className="container">
                     <div className="section__wrapper wow fadeInUp" data-wow-duration="1.5s">
-                        
-                            <div className="banner__list">
-                                <form onSubmit={e=>handlesearchsubmit(e)} className="row align-items-center justify-content-center" >
 
-                                    <div className="col-9">
-                                        <div className="banner__list">
+                        <div className="banner__list">
+                            <form onSubmit={e => handlesearchsubmit(e)} className="row align-items-center justify-content-center" >
 
-                                            <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' name='search' value={search}  onChange={handlesearch} />
-                                        </div>
+                                <div className="col-9">
+                                    <div className="banner__list">
+
+                                        <input style={{ height: "52px" }} type="name" class="form-control" placeholder='Search Anything Related to Projects' name='search' value={search} onChange={handlesearch} />
                                     </div>
+                                </div>
 
 
 
 
-                                    <div className="col-3">
-                                        <button style={buttonStyle} type="button" onClick={handlesearchsubmit} className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                       
+                                <div className="col-3">
+                                    <button style={buttonStyle} type="button" onClick={handlesearchsubmit} className="default-btn reverse d-block"><span style={spanStyle}>Find Your project</span></button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -260,7 +259,7 @@ const Sections = () => {
                         <div className="row g-4 justify-content-center">
 
                             {currentItems && currentItems.map((post) => {
-                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide,Preview_URL } = post;
+                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide, Preview_URL } = post;
                                 return (
                                     <div className="col-12" key={id}>
                                         <div className="blog__item">
@@ -316,7 +315,7 @@ const Sections = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form onSubmit={e=>handleSubmit(e)}>
+                            <form onSubmit={e => handleSubmit(e)}>
                                 <div class="banner__list">
                                     <div class="row align-items-center row-cols-2">
                                         <div class="col">
@@ -441,7 +440,7 @@ const Sections = () => {
 
                                         <div class="col">
                                             <lable></lable>
-                                            <button style={buttonStyle}  type="submit" onClick={e=>handleSubmit(e)} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
+                                            <button style={buttonStyle} type="submit" onClick={e => handleSubmit(e)} class="default-btn reverse d-block"><span style={spanStyle}>Find Your Project</span></button>
                                         </div>
                                     </div>
                                 </div>

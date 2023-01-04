@@ -107,6 +107,7 @@ const Pie2 = () => {
             <Chart type='pie' className="pie" series={chartdata.map((data) => data.value)}
                 options={{
                     labels: chartdata.map((data) => data.Project_area),
+                   
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -118,40 +119,9 @@ const Pie2 = () => {
                             }
                         }
                     }],
-                    chart: {
-                        events: {
-                          dataPointSelection: (event, chartContext, config) => {
-                            switch(config.w.config.labels[config.dataPointIndex]){
-                                case 'AI/Machine Learning/Data Mining':
-                                    setfilter('AI/Machine Learning/Data Mining');
-                                    break;
-                                case 'IoT':
-                                    setfilter('IoT');
-                                    break;
-                                case 'Website/Online Portal':
-                                    setfilter('Website/Online Portal');
-                                    break;
-                                case 'Natural Language Processing':
-                                    setfilter('Natural Language Processing');
-                                    break;
-                                case 'Mobile Application':
-                                    setfilter('Mobile Application');
-                                    break;
-                                case 'PERSON RE-IDENTIFICATION':
-                                    setfilter('PERSON RE-IDENTIFICATION');
-                                    break;
-                                case 'Image Processing':
-                                    setfilter('Image Processing');
-                                    break;
-                                case 'HealthCare/Medical':
-                                    setfilter('HealthCare/Medical'); 
-                                    break;
-                                case 'Robotics':
-                                    setfilter('Robotics');
-                                    break;
-                                  
-                            }
-                          }
+                    events: {
+                        dataPointSelection: (event, chartContext, config) => {
+                            console.log(chartContext, config);
                         }
                       },
                 }}

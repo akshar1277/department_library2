@@ -6,6 +6,7 @@ import Chart from './Dashboard/Chart';
 import List from './Dashboard/List';
 import Pie1 from './Dashboard/Pie1';
 import Pie2 from './Dashboard/Pie2';
+
 import BarChart from './Dashboard/Barchart';
 
 
@@ -13,14 +14,14 @@ const Dashboard2 = () => {
 
     return (
         <div className='Dashboard_2 my-5 py-3'>
-            <div className='widgets'>
+            {/* <div className='widgets'>
                 <Widget type="Projects"></Widget>
                 <Widget type="UDP"></Widget>
                 <Widget type="IDP"></Widget>
-                {/* <Widget type="students"></Widget> */}
+              
 
 
-            </div>
+            </div> */}
 
             <div className="charts">
                 <Pie1></Pie1>
