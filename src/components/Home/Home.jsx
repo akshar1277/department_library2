@@ -22,9 +22,9 @@ const Home = () => {
       
    
 
-      <Count />
+      {/* <Count /> */}
 
-      <Video />
+      {/* <Video /> */}
 
       <Footer />
 
