@@ -18,59 +18,74 @@ const Pie3 = () => {
 
     const data01 = [
         {
-            "Project_area": "AI/Machine Learning/Data Mining",
+            "languages": "Python",
             "color": "#0d6efd",
             "link": "https://www.npmjs.com/package/react-tilt"
 
         },
         {
-            "Project_area": "IoT",
-            "color": "#ffc107",
+            "languages": "JavaScript",
+            "color": "#20c997",
             "link": "https://codingstatus.com/how-to-display-images-in-react-js/"
 
         },
         {
-            "Project_area": "Website/Online Portal",
-            "color": "#6610f2",
+            "languages": "HTML",
+            "color": "#ffc107",
             "link": "https://www.codewithharry.com/blogpost/php-cheatsheet/"
 
         },
         {
-            "Project_area": "Natural Language Processing",
+            "languages": "PHP",
+            "color": "#dc3545",
+            "link": "https://chakra-ui.com/"
+
+
+        },
+        {
+            "languages": "Android",
+            "color": "#6610f2",
+            "link": "https://chakra-ui.com/"
+
+        },
+        {
+            "languages": "Flutter",
+            "color": "#0d6efd",
+            "link": "https://chakra-ui.com/"
+
+
+        },
+        {
+            "languages": "JAVA",
             "color": "#20c997",
             "link": "https://chakra-ui.com/"
 
         },
         {
-            "Project_area": "Mobile Application",
-            "color": "#0dcaf0",
+            "languages": "C/C++",
+            "color": "#ffc107",
             "link": "https://chakra-ui.com/"
 
         },
         {
-            "Project_area": "PERSON RE-IDENTIFICATION",
-            "color": "#0dcaf0",
-            "link": "https://chakra-ui.com/"
-
-        },
-        {
-            "Project_area": "Image Processing",
+            "languages": "IOS",
             "color": "#dc3545",
             "link": "https://chakra-ui.com/"
 
         },
         {
-            "Project_area": "HealthCare/Medical",
-            "color": "#d63384",
-            "link": "https://chakra-ui.com/"
+            "languages": ".NET",
+            "color": "#6610f2",
+            "link": "https://www.codewithharry.com/blogpost/php-cheatsheet/"
 
         },
         {
-            "Project_area": "Robotics",
-            "color": "#6f42c1",
+            "languages": "Node JS",
+            "color": "#0dcaf0",
             "link": "https://chakra-ui.com/"
 
-        }
+        },
+        
 
     ];
 
@@ -83,11 +98,11 @@ const Pie3 = () => {
     const res2 = axios.get(second);
 
     useEffect(() => {
-
+        // getMyPostData();
         window.scrollTo(0, 0);
 
         axios.all([res, res2]).then(axios.spread((...responses) => {
-
+            // console.log(responses)
             const responseOne = responses[0]
             const responseTwo = responses[1]
             const responseData = [...responseOne.data, ...responseTwo.data]
@@ -100,13 +115,12 @@ const Pie3 = () => {
         })).catch((error) => setIsError(error.message));
     }, []);
 
-
-    const count_fre = (Area) => {
+    const count_fre = (Language) => {
         let count = 0;
         data.map((datas) => {
 
 
-            if (datas.Project_area.includes(Area)) {
+            if (datas.Langauge.includes(Language)) {
 
                 count += 1;
             }
@@ -118,7 +132,7 @@ const Pie3 = () => {
     const chartdata = []
     // console.log(typeof chartdata);
     // eslint-disable-next-line array-callback-return
-    data01.map((data01) => { chartdata.push({ 'Project_area': data01.Project_area, 'value': count_fre(data01.Project_area), 'color': data01.color, 'link': data01.link }) })
+    data01.map((data01) => { chartdata.push({ 'Langauge': data01.languages, 'value': count_fre(data01.languages), 'color': data01.color, 'link': data01.link }) })
 
     ChartJS.register(
         ArcElement,
@@ -127,7 +141,7 @@ const Pie3 = () => {
     )
 
     const dataChart = {
-        labels: chartdata.map((data) => data.Project_area),
+        labels: chartdata.map((data) => data.Langauge),
         datasets: [
             {
                 labels: chartdata.map((data) => data.value),
@@ -139,7 +153,7 @@ const Pie3 = () => {
             }
         ],
     };
-    const options = {
+    const options2 = {
         responsive: true,
         plugins: {
             legend: {
@@ -147,7 +161,7 @@ const Pie3 = () => {
             },
             title: {
                 display: true,
-                text: 'PieChart for Project Area'
+                text: 'PieChart for Project Languages'
             },
             datalabels: {
                 display: true,
@@ -207,7 +221,7 @@ const Pie3 = () => {
         <>
 
             <div className="pie">
-                <Pie data={dataChart} options={options} onClick={onClick} ref={chartRef}></Pie>
+                <Pie data={dataChart} options={options2} onClick={onClick} ref={chartRef}></Pie>
             </div>
         </>
     )

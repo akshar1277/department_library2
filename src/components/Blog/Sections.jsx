@@ -6,13 +6,13 @@ import { ConstructionOutlined } from '@mui/icons-material';
 
 import { useContext } from 'react';
 import ChartContext
- from '../../context/ChartContext';
+    from '../../context/ChartContext';
 
 
 const Sections = () => {
 
-    let {languages,setfilter} = useContext(ChartContext)
-    
+    let { languages, setfilter } = useContext(ChartContext)
+
 
     const buttonStyle = {
         background: "linear-gradient(#009FFD, #2A2A72)",
@@ -82,34 +82,34 @@ const Sections = () => {
             item.Langauge.toLowerCase().includes(filters2.search) ||
             item.Project_area.toLowerCase().includes(filters2.search)
 
-            );
-            console.log(searchdata);
-            setData(searchdata);
-        
-      
+        );
+        console.log(searchdata);
+        setData(searchdata);
+
+
     }
     //this is for filter by chart click
-    const searchbychart=(l,rdata)=>{
-        
-        const filters3={
-            search2:l.toLowerCase(),
+    const searchbychart = (l, rdata) => {
+
+        const filters3 = {
+            search2: l.toLowerCase(),
         };
-        
+
         // console.log(getSearch);
 
-      
-            const searchdata2 = rdata.filter((item) =>
-                item.Project_name.toLowerCase().includes(l.toLowerCase()) ||
-                item.Abstract.toLowerCase().includes(l.toLowerCase()) ||
-                item.Langauge.toLowerCase().includes(l.toLowerCase()) ||
-                item.Project_area.toLowerCase().includes(l.toLowerCase())
 
-            );
-            
-            setData(searchdata2);
-            setfilter('');
-        
-      
+        const searchdata2 = rdata.filter((item) =>
+            item.Project_name.toLowerCase().includes(l.toLowerCase()) ||
+            item.Abstract.toLowerCase().includes(l.toLowerCase()) ||
+            item.Langauge.toLowerCase().includes(l.toLowerCase()) ||
+            item.Project_area.toLowerCase().includes(l.toLowerCase())
+
+        );
+
+        setData(searchdata2);
+        setfilter('');
+
+
     }
 
 
@@ -140,7 +140,7 @@ const Sections = () => {
             language: formdata.language.toLowerCase(),
             professor: formdata.professor.toLowerCase()
         };
-        
+
 
         const out = OriginalData.filter((item) =>
             item.Batch.toString().includes(filters.batch) &&
@@ -150,7 +150,7 @@ const Sections = () => {
             item.Internal_guide.toLowerCase().includes(filters.professor)
 
         )
-        
+
 
         setData(out);
 
@@ -175,9 +175,9 @@ const Sections = () => {
             setMyData2(responseTwo.data)
             setData(responseData)
             setOriginalData(responseData)
-            
-            if(languages){
-                searchbychart(languages,responseData);
+
+            if (languages) {
+                searchbychart(languages, responseData);
 
             }
 
@@ -259,7 +259,7 @@ const Sections = () => {
                         <div className="row g-4 justify-content-center">
 
                             {currentItems && currentItems.map((post) => {
-                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide, Preview_URL } = post;
+                                const { Batch, id, Project_id, Project_name, Abstract, Leader_enroll, Leader_name, Leader_email, Internal_guide, Preview_URL, Langauge } = post;
                                 return (
                                     <div className="col-12" key={id}>
                                         <div className="blog__item">
@@ -272,6 +272,10 @@ const Sections = () => {
                                                     <div className="blog__metapost">
                                                         <a href="/#">Batch : {Batch}</a>
                                                         <a href="/#">LeaderName : {Leader_name}</a>
+                                                        <a href="/#">Langauge : {Langauge}</a>
+
+                                                        <a href="/#">Internal_guide : {Internal_guide}</a>
+
 
 
                                                     </div>
